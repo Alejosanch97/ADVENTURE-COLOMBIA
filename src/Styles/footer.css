@@ -1,0 +1,71 @@
+/*
+  =======================================
+  FOOTER MINIMALISTA Y HORIZONTAL
+  =======================================
+*/
+
+/* Contenedor principal del footer */
+.simple-footer {
+    /* Fondo oscuro para contraste */
+    background-color: #1a1a1a; 
+    color: #f0f0f0; 
+    padding: 25px 0; /* Menos padding para hacerlo más compacto */
+    border-top: 1px solid #333; 
+}
+
+/* Contenedor Flexbox para la disposición horizontal */
+.footer-content {
+    max-width: 1400px; /* Ampliamos un poco el ancho */
+    margin: 0 auto;
+    padding: 0 40px; /* Buen padding lateral */
+
+    /* CLAVE: Flexbox para disposición horizontal */
+    display: flex;
+    justify-content: space-between; /* Espacia los grupos a los lados */
+    align-items: center; /* Centra verticalmente todos los elementos */
+}
+
+/* 1. Nombre de la Marca (Alineado a la izquierda) */
+.footer-brand {
+    /* Usaremos una fuente más bold y espaciada para el nombre de marca */
+    font-family: 'Oswald', sans-serif; /* O una fuente serif elegante si la tienes */
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Más espaciado */
+    color: white; 
+    margin: 0; /* Eliminar márgenes por defecto */
+    /* Aseguramos que Adventure Colombia esté a la izquierda */
+    order: 2; 
+}
+
+/* 2. Créditos y Lema (Alineados a la derecha) */
+
+/* Contenedor para agrupar los créditos y el lema */
+.footer-info-group {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre los bloques de texto */
+    order: 1; /* Aseguramos que este grupo esté a la derecha */
+}
+
+.footer-credits, .footer-motto {
+    /* Mejoramos la fuente para la legibilidad en tamaño pequeño */
+    font-family: 'Georgia', serif; /* O la fuente de cuerpo de texto principal */
+    font-size: 0.8rem;
+    color: #aaaaaa;
+    line-height: 1.4;
+    margin: 0; /* Eliminar márgenes por defecto */
+}
+
+.footer-credits strong {
+    font-weight: 600;
+    color: #cccccc; /* Un gris más claro para el nombre */
+}
+
+.footer-motto {
+    font-style: italic; /* Añadir toque elegante con cursiva */
+    color: #777777; /* Color más sutil */
+    /* Lo ocultamos en escritorio si queremos solo dos elementos */
+    /* display: none; */ 
+}

@@ -1,0 +1,423 @@
+/*
+|--------------------------------------------------------------------------
+| CONFIGURACIÓN BASE Y VARIABLES
+|--------------------------------------------------------------------------
+*/
+
+:root {
+    /* ... (Colores de Fondo se mantienen) ... */
+    --color-darkblue: #1a3a60;    
+    --color-lightgreen: #aad48c;  
+    --color-tan: #d1b499;         
+    --color-lightblue: #728c9b;   
+    --color-darkgreen: #113637;   
+    --color-red: #5d0f19;         
+    --color-orange: #55544f;      
+    
+    /* Variables para el Indicador Central */
+    --indicator-size: 250px; /* Tamaño del círculo (W/H) */
+    --dot-offset: 125px;     /* Radio del círculo (125px). DISTANCIA DE ÓRBITA. */
+    --dot-size: 25px;        /* TAMAÑO DEL PUNTO */
+    --border-size: 2px;      /* TAMAÑO DEL BORDE */
+
+    /* FACTOR DE ESCALA: 1.8 */
+    --dot-scale-factor: 1.5;
+
+    /* Distancia para mover el punto desde el centro hacia arriba
+       (Radio del círculo - Mitad del tamaño del punto = 125px - 5px = 120px) */
+    --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 10px); /* 120px */
+    
+    /* Colores de Texto Base */
+    --text-color-light: white;
+    --text-color-dark: #333; 
+    --text-color-accent: #e7367c; 
+    
+    /* Color del título fijo que resalta: Blanco */
+    --title-fixed-color: white; 
+    --title-fixed-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; 
+    overflow-x: hidden;
+    background-color: #f8f8f8;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SECCIONES DE SCROLL, CONTENIDO Y LÓGICA DE COLOR (MANTENIDOS)
+|--------------------------------------------------------------------------
+*/
+.how-it-works-page {
+    position: relative;
+    width: 100%;
+    min-height: 700vh; 
+}
+
+.steps-container {
+    padding: 0; 
+}
+
+.step-section {
+    height: 100vh; 
+    display: flex;
+    position: relative;
+    margin: 0; 
+    overflow: hidden;
+}
+
+/* Aplicación de colores de fondo */
+.color-darkblue { background-color: var(--color-darkblue); } 
+.color-lightgreen { background-color: var(--color-lightgreen); }
+.color-tan { background-color: var(--color-tan); }
+.color-lightblue { background-color: var(--color-lightblue); } 
+.color-darkgreen { background-color: var(--color-darkgreen); } 
+.color-red { background-color: var(--color-red); } 
+.color-orange { background-color: var(--color-orange); } 
+
+/*
+|--------------------------------------------------------------------------
+| CONTENIDO INTERNO: MITADES EXACTAS 50/50
+|--------------------------------------------------------------------------
+*/
+
+.step-content-container {
+    display: flex;
+    width: 100%; 
+    height: 100%;
+}
+
+.step-half {
+    flex: 0 0 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+}
+
+.order-1 { order: 1; }
+.order-2 { order: 2; }
+
+/* --- Lado de la IMAGEN --- */
+.step-image-side {
+    position: relative;
+    overflow: hidden;
+    opacity: 1; 
+}
+
+.step-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+}
+
+/* --- Lado del Texto y Tipografía --- */
+
+.step-text-side {
+    flex-direction: column;
+    padding: 0 30px; 
+    z-index: 10; 
+}
+
+.step-text-details {
+    max-width: 350px; 
+    padding: 40px 0;
+    text-align: left; 
+}
+
+/* AJUSTE: Hacer que el texto STEP 1/2/etc. sea más grande y resalte */
+.step-small-title {
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    color: var(--text-color-accent); 
+    margin-bottom: 15px;
+    letter-spacing: 3px; 
+    text-transform: uppercase;
+}
+
+.step-description {
+    font-size: 1.15rem; 
+    line-height: 1.6;
+    margin-bottom: 30px; 
+    opacity: 0.9;
+}
+
+.step-title-alt {
+    font-size: 2.5rem; 
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0;
+}
+
+/*
+|--------------------------------------------------------------------------
+| LÓGICA DE COLOR DE TEXTO Y ALINEACIÓN ALTERNADA (MANTENIDOS)
+|--------------------------------------------------------------------------
+*/
+
+/* --- LÓGICA DE COLOR (No se toca) --- */
+.color-darkblue .step-text-side, .color-darkgreen .step-text-side,
+.color-red .step-text-side, .color-orange .step-text-side {
+    color: var(--text-color-light); 
+}
+.color-lightgreen .step-text-side, .color-tan .step-text-side,
+.color-lightblue .step-text-side {
+    color: var(--text-color-dark); 
+}
+.color-lightgreen .step-description, .color-tan .step-description,
+.color-lightblue .step-description {
+    color: var(--text-color-dark); 
+    opacity: 0.7;
+}
+
+/* Pasos IMPARES */
+.step-section:nth-child(odd) .step-text-side {
+    justify-content: center;
+    align-items: center; 
+}
+.step-section:nth-child(odd) .step-text-side .step-text-details {
+    margin: 0; 
+}
+
+/* Pasos PARES */
+.step-section:nth-child(even) .step-text-side {
+    justify-content: center;
+    align-items: center; 
+}
+.step-section:nth-child(even) .step-text-side .step-text-details {
+    margin: 0;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| INDICADOR FIJO CENTRAL Y CÍRCULO (MANTENIDOS)
+|--------------------------------------------------------------------------
+*/
+
+.fixed-step-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; 
+    pointer-events: none; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 50; 
+}
+
+/* Título de la Sección "HOW IT ALL WORKS" */
+.how-it-works-title {
+    font-size: 2rem; 
+    font-weight: 700;
+    color: var(--title-fixed-color); 
+    text-shadow: var(--title-fixed-shadow); 
+    text-transform: uppercase;
+    letter-spacing: 7px; 
+    z-index: 55; 
+    position: absolute;
+    top: calc(50% + var(--indicator-size) / 2 + 150px); 
+    left: 50%;
+    transform: translate(-50%, 0); 
+    text-align: center;
+}
+
+.step-circle-wrapper {
+    position: absolute; 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    z-index: 60;
+}
+
+.step-number-circle {
+    width: var(--indicator-size); 
+    height: var(--indicator-size);
+    border-radius: 50%;
+    border: var(--border-size) solid rgba(255, 255, 255, 0.6); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: transparent; 
+}
+
+.step-number {
+    font-size: 4.5rem;
+    font-weight: 300;
+    color: white;
+    z-index: 70;
+}
+
+/*
+|--------------------------------------------------------------------------
+| CORRECCIÓN FINAL DE ALINEACIÓN DE PUNTOS
+|--------------------------------------------------------------------------
+*/
+.dots-container {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    pointer-events: none; 
+}
+
+.dot {
+    position: absolute;
+    width: var(--dot-size); 
+    height: var(--dot-size); 
+    background-color: rgba(255, 255, 255, 0.4); 
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.dot-active {
+    background-color: white !important; 
+    box-shadow: 0 0 8px white;
+}
+
+/* 1. Centrar el punto en el centro del Círculo */
+.dot {
+    /* Posiciona el centro del punto exactamente en el centro del contenedor (50% de 250px = 125px) */
+    top: calc(50% - var(--dot-size) / 2); 
+    left: calc(50% - var(--dot-size) / 2); 
+    
+    /* El origen de la rotación es el centro del propio punto */
+    transform-origin: center;
+}
+
+/* 2. Definir la POSICIÓN y ROTACIÓN combinadas para CADA punto.
+   (Traslación a la órbita + Rotación a la posición final)
+*/
+.dot-1 { 
+    transform: rotate(0deg) 
+               translateY(calc(-1 * var(--dot-orbit-distance))); 
+}
+.dot-2 { 
+    transform: rotate(51.4deg) 
+               translateY(calc(-1 * var(--dot-orbit-distance))); 
+}
+.dot-3 { 
+    transform: rotate(102.8deg) 
+               translateY(calc(-1 * var(--dot-orbit-distance))); 
+}
+.dot-4 { 
+    transform: rotate(154.2deg) 
+               translateY(calc(-1 * var(--dot-orbit-distance))); 
+}
+.dot-5 { 
+    transform: rotate(205.6deg) 
+               translateY(calc(-1 * var(--dot-orbit-distance))); 
+}
+.dot-6 { 
+    transform: rotate(257deg) 
+               translateY(calc(-1 * var(--dot-orbit-distance))); 
+}
+.dot-7 { 
+    transform: rotate(308.4deg) 
+               translateY(calc(-1 * var(--dot-orbit-distance))); 
+}
+
+/* 3. Estado activo. Mantenemos la traslación y rotación y AÑADIMOS la escala. */
+.dot-1.dot-active { 
+    transform: 
+        rotate(0deg) 
+        translateY(calc(-1 * var(--dot-orbit-distance))) 
+        scale(var(--dot-scale-factor)) !important; 
+}
+.dot-2.dot-active { 
+    transform: 
+        rotate(51.4deg) 
+        translateY(calc(-1 * var(--dot-orbit-distance))) 
+        scale(var(--dot-scale-factor)) !important; 
+}
+.dot-3.dot-active { 
+    transform: 
+        rotate(102.8deg) 
+        translateY(calc(-1 * var(--dot-orbit-distance))) 
+        scale(var(--dot-scale-factor)) !important; 
+}
+.dot-4.dot-active { 
+    transform: 
+        rotate(154.2deg) 
+        translateY(calc(-1 * var(--dot-orbit-distance))) 
+        scale(var(--dot-scale-factor)) !important; 
+}
+.dot-5.dot-active { 
+    transform: 
+        rotate(205.6deg) 
+        translateY(calc(-1 * var(--dot-orbit-distance))) 
+        scale(var(--dot-scale-factor)) !important; 
+}
+.dot-6.dot-active { 
+    transform: 
+        rotate(257deg) 
+        translateY(calc(-1 * var(--dot-orbit-distance))) 
+        scale(var(--dot-scale-factor)) !important; 
+}
+.dot-7.dot-active { 
+    transform: 
+        rotate(308.4deg) 
+        translateY(calc(-1 * var(--dot-orbit-distance))) 
+        scale(var(--dot-scale-factor)) !important; 
+}
+
+/*
+|--------------------------------------------------------------------------
+| CONFIGURACIÓN BASE Y VARIABLES
+|--------------------------------------------------------------------------
+*/
+
+/* ... (El bloque :root se mantiene sin cambios) ... */
+
+html {
+    /* 1. Asegura que el elemento raíz ocupe la altura de la ventana */
+    height: 100%; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif; 
+    overflow-x: hidden;
+    background-color: #f8f8f8;
+    
+    /* 🚀 CORRECCIÓN CLAVE 1: ¡DEBES AÑADIR HEIGHT: 100%! */
+    height: 100%; 
+
+    /* 💥 2. ESTO FUERZA AL NAVEGADOR A DETENERSE EN PUNTOS FIJOS 💥 */
+    scroll-snap-type: y mandatory;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SECCIONES DE SCROLL, CONTENIDO Y LÓGICA DE COLOR (MANTENIDOS)
+|--------------------------------------------------------------------------
+*/
+.how-it-works-page {
+    position: relative;
+    width: 100%;
+    min-height: 700vh; 
+    /* scroll-snap-type ELIMINADO CORRECTAMENTE de aquí. */
+}
+
+/* ... (continúa el código .steps-container) ... */
+
+.step-section {
+    height: 100vh; 
+    display: flex;
+    position: relative;
+    margin: 0; 
+    overflow: hidden;
+    
+    /* 3. Punto de anclaje forzado */
+    scroll-snap-align: start; 
+}

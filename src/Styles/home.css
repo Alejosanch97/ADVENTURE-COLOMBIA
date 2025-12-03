@@ -1,0 +1,886 @@
+/*
+  =======================================
+  Estilos Generales de la Sección HERO
+  (Sección sin cambios, la mantienes como la tenías)
+  =======================================
+*/
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; 
+    overflow: hidden; 
+    background-color: rgba(0, 0, 0, 0.4); 
+}
+
+/*
+  =======================================
+  Estilos del Video de Fondo
+  (Sección sin cambios, la mantienes como la tenías)
+  =======================================
+*/
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; 
+    background: rgba(0, 0, 0, 0.4); 
+}
+
+.video-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.35); 
+    z-index: 2; 
+}
+
+.video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 1; 
+    transition: opacity 1s ease-in-out; 
+}
+
+
+/*
+  ================================================
+  Estilos del Contenido (Texto y Botones) - ¡CORREGIDO!
+  ================================================
+*/
+
+/* 🎨 Clase para el color Amarillo de Colombia */
+.colombia-yellow {
+    color: #FFC72C; /* Amarillo vibrante */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5); 
+}
+
+.hero-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.hero-title {
+    font-size: 5rem; /* ¡Título mucho más grande! */
+    font-weight: 900; /* Letra más gruesa para impacto */
+    line-height: 1.1; 
+    margin-bottom: 1.5rem; /* Más espacio */
+    text-transform: uppercase;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem; /* Subtítulo más grande */
+    font-weight: 400;
+    max-width: 900px; /* Ocupa más ancho */
+    margin: 0 auto 3rem; /* Más espacio debajo */
+    line-height: 1.5;
+}
+
+.hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Más espacio entre botones */
+}
+
+/* Estilos para los botones - Mejoras en tamaño y borde */
+.btn-explore,
+.btn-browse {
+    padding: 15px 35px; /* Botones más grandes */
+    border: 3px solid white; /* Borde más grueso */
+    background: transparent; 
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 🔴 Efecto Hover para el botón EXPLORE (Rojo de Colombia) */
+.btn-explore.btn-rojo-hover:hover {
+    background: #CE1126; 
+    border-color: #CE1126;
+    color: white;
+}
+
+/* 🔵 Efecto Hover para el botón BROWSE (Azul de Colombia) */
+.btn-browse.btn-azul-hover:hover {
+    background: #CE1126; 
+    border-color: #CE1126;
+    color: white;
+}
+
+/*
+  =======================================
+  Estilo del Indicador de Scroll
+  (Con un pequeño ajuste al tamaño)
+  =======================================
+*/
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 0.9rem; /* Ligeramente más grande */
+    letter-spacing: 3px; /* Más espaciado */
+    z-index: 10;
+}
+
+/* Definición de colores base (si no la tienes, añádela) */
+:root {
+    --color-yellow: #FFC72C; /* Amarillo de Colombia */
+    --color-blue: #003893;   /* Azul de Colombia */
+    --color-red: #CE1126;    /* Rojo de Colombia */
+    --color-text-dark: #222; /* Negro muy oscuro y elegante */
+    --color-text-light: #555; /* Texto secundario más claro */
+}
+
+
+/*
+  =======================================================
+  SECCIÓN 2A: PASIÓN COLOMBIANA, EXPERIENCIA GLOBAL (ACTUALIZADO)
+  =======================================================
+*/
+.travel-experts-section {
+    padding: 60px 0; 
+    background-color: white; 
+    text-align: center; 
+}
+
+/* 🎨 Clases de Color Adicionales para inyectar la vibración */
+.colombia-yellow-bg {
+    /* Resaltador en el título */
+    color: var(--color-text-dark); 
+    background-color: var(--color-yellow); 
+    padding: 2px 10px; 
+    box-decoration-break: clone; 
+}
+
+/* *** CLASE NUEVA: Texto Rojo para la frase emotiva *** */
+.colombia-red-text {
+    /* Damos el toque de color a la exclamación con el color Rojo */
+    color: var(--color-red);
+    font-weight: 700;
+}
+
+/* 🚩 Título Principal: Más grande y con estilo */
+.travel-experts-section .section-title {
+    font-size: 2.8rem; 
+    font-weight: 800; 
+    line-height: 1.2;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    color: var(--color-text-dark); 
+    letter-spacing: 1.5px;
+    /* Borde inferior rojo */
+    border-bottom: 3px solid var(--color-red); 
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+
+/* 🌟 Subtítulo/Cuerpo: Prominente y elegante */
+.travel-experts-section .section-body {
+    font-family: 'Georgia', serif; 
+    font-size: 1.25rem; 
+    line-height: 1.8;
+    max-width: 900px; 
+    margin: 0 auto 20px;
+    color: var(--color-text-light); 
+    font-weight: 300; 
+}
+
+.travel-experts-section .section-body:last-of-type {
+    margin-bottom: 40px; 
+}
+
+
+/* 🚀 Botón: Estilo Elegante con Hover Azul de Colombia */
+.travel-experts-section .btn-start-journey {
+    background-color: var(--color-text-dark); 
+    color: white;
+    border: none;
+    padding: 15px 40px; 
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px; 
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+/* 🔵 Efecto Hover: Incorporamos el Azul de Colombia */
+.travel-experts-section .btn-start-journey.btn-blue-hover:hover {
+    background-color: var(--color-blue); 
+    box-shadow: 0 5px 15px rgba(0, 56, 147, 0.4); 
+}
+/*
+  =======================================
+  SECCIÓN 2B: HOW WE'RE DIFFERENT (LAS 3 TARJETAS)
+  =======================================
+*/
+
+/* 📏 Estilo del Contenedor Principal */
+.how-were-different-section {
+    padding: 70px 0 70px; 
+    background-color: #f7f7f7; 
+    text-align: center;
+}
+
+/* 🖼️ Encabezado de la Sección */
+.how-were-different-section .section-header {
+    font-size: 1.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    letter-spacing: 2px;
+    margin-bottom: 50px;
+}
+
+/* 🧱 Contenedor de las Tarjetas (Ajustado) */
+.difference-cards-col {
+    display: flex;
+    justify-content: center;
+    /* *** AJUSTE CLAVE 1: Aumentamos el espacio entre tarjetas *** */
+    gap: 50px; /* Incrementado de 30px a 50px */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 🃏 Estilo de Cada Tarjeta (Ajustado) */
+.card-item {
+    flex: 1; 
+    /* *** AJUSTE CLAVE 2: Aumentamos el tamaño máximo de la tarjeta *** */
+    max-width: 400px; /* Incrementado de 350px a 400px */
+    text-align: center; 
+}
+
+/* 📸 Contenedor de Imagen */
+.card-image-wrapper {
+    margin-bottom: 25px;
+    overflow: hidden; 
+}
+
+.card-image {
+    width: 100%;
+    /* Opcional: Puedes aumentar la altura de la imagen si lo deseas. 
+       Por ejemplo: height: 320px; */
+    height: 300px; 
+    object-fit: cover; 
+    display: block;
+    transition: transform 0.4s ease; 
+}
+
+/* Efecto Zoom Suave al pasar el mouse sobre la imagen */
+.card-item:hover .card-image {
+    transform: scale(1.05);
+}
+
+/* ✏️ Título de la Tarjeta */
+.card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* 📝 Descripción de la Tarjeta */
+.card-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-text-light); 
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+/* 🖱️ Estilo del Botón Inferior */
+.full-width-button-wrapper {
+    margin-top: 60px;
+}
+
+.btn-learn-process {
+    background: white;
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-text-dark); 
+    padding: 12px 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* 🔴 Hover del Botón: Usamos el Rojo de Colombia para darle un toque */
+.btn-learn-process:hover {
+    background-color: var(--color-red); 
+    border-color: var(--color-red);
+    color: white;
+}
+/*
+  =======================================
+  SECCIÓN 3: POPULAR TRIPS SECTION (SCROLL HORIZONTAL DE LUJO)
+  =======================================
+*/
+
+/* 🌑 Contenedor Principal: Fondo Oscuro y Altura Mínima */
+.popular-trips-section {
+    /* Fondo con degradado oscuro similar a la imagen */
+    background: linear-gradient(135deg, #1f1f1f 0%, #303030 100%);
+    min-height: 80vh; /* Altura mínima para que el diseño luzca */
+    padding: 100px 0; /* Espacio para el contenido */
+    color: white; /* Color base del texto */
+    overflow: hidden; /* Importante para la distribución */
+}
+
+/* 📐 Contenedor Interno: Flexbox para Sidecar y Carrusel */
+.popular-trips-inner {
+    display: flex;
+    /* Ajustamos el gap para dar más espacio entre el texto y las tarjetas */
+    gap: 80px; 
+    align-items: flex-start; 
+    /* El ancho total será mayor para acomodar el scroll horizontal */
+    width: 100%; 
+    max-width: 1600px; /* Ancho máximo para el contenedor de contenido */
+    margin: 0 auto;
+    padding: 0 40px; /* Padding lateral */
+}
+
+/* ✏️ Columna Izquierda (Sidebar): Estilo de Encabezado */
+.trips-sidebar {
+    /* Ancho fijo para el sidebar (ajustado para ser más dominante) */
+    flex: 0 0 350px; 
+    padding-top: 30px; /* Alineación visual con el contenido */
+    text-align: left; /* Título alineado a la izquierda */
+    color: white;
+}
+
+.sidebar-title {
+    font-family: 'Georgia', serif; /* Font elegante y robusto */
+    font-size: 3.5rem; /* Título muy grande */
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.sidebar-subtitle {
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    color: #ccc; /* Subtítulo gris claro */
+    font-weight: 300;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* 🎠 Columna Derecha (Carrusel con Scroll) */
+.trips-carousel {
+    flex: 1; 
+    min-width: 0; 
+    /* El carrusel debe empezar justo donde termina el sidebar */
+    margin-left: auto;
+}
+
+/* !!! CONTENEDOR DEL SCROLL HORIZONTAL !!! */
+.carousel-content {
+    display: flex; 
+    overflow-x: auto; 
+    /* Aumentamos el espacio entre las tarjetas */
+    gap: 40px; 
+    padding-bottom: 20px; 
+    /* Ocultar barra de desplazamiento */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.carousel-content::-webkit-scrollbar {
+    display: none;
+}
+/* !!! FIN DEL SCROLL HORIZONTAL !!! */
+
+
+/* 🃏 Estilos de la Tarjeta de Viaje (Ajustado) */
+.trip-card {
+    /* *** CLAVE: Hacer las tarjetas grandes y altas *** */
+    flex: 0 0 380px; /* Ancho fijo para que sean más grandes */
+    max-width: 380px; 
+    height: 600px; /* Altura notable para el diseño de lujo */
+    
+    background-color: #2a2a2a; /* Fondo oscuro de la tarjeta */
+    overflow: hidden;
+    position: relative;
+    border-radius: 2px;
+}
+
+/* 📸 Wrapper de Imagen: Usamos overlay en la imagen */
+.trip-card-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.trip-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Efecto de Oscurecimiento sobre la imagen */
+    filter: brightness(60%); 
+    transition: filter 0.3s ease;
+}
+
+/* Efecto Hover: Aclara la imagen */
+.trip-card:hover .trip-card-image {
+    filter: brightness(85%);
+}
+
+/* Duración de la Tarjeta (Esquina superior derecha/izquierda) */
+.card-duration {
+    position: absolute;
+    top: 20px;
+    right: 20px; /* Lo movemos a la derecha superior */
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    z-index: 10;
+}
+
+/* 📜 Contenedor de Texto (Posicionado en la parte inferior) */
+.trip-card-text {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 25px;
+    color: white;
+    z-index: 10; /* Sobre la imagen */
+    text-align: left;
+}
+
+.trip-card-title {
+    font-family: 'Georgia', serif;
+    font-size: 1.4rem; /* Título de la tarjeta grande y legible */
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    min-height: auto; /* Ya no necesitamos min-height */
+}
+
+/* 🔳 Botón EXPLORE TRIP (Estilo minimalista blanco) */
+.btn-trip-explore {
+    background: transparent;
+    color: white;
+    border: 1px solid white;
+    padding: 10px 25px;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.btn-trip-explore:hover {
+    background: white;
+    color: #1f1f1f; /* Texto oscuro en hover */
+}
+
+/*
+  =======================================
+  SECCIÓN 4: HOW DO YOU TRAVEL? (FILTROS Y GRID)
+  =======================================
+*/
+
+.travel-finder-section {
+    padding: 100px 0; 
+    background-color: white; 
+    text-align: center;
+}
+
+/* Título Principal */
+.finder-main-title {
+    /* *** MODIFICACIONES CLAVE DEL TÍTULO *** */
+    font-size: 3.5rem; /* Más grande */
+    font-weight: 900; /* Más grueso */
+    text-transform: uppercase;
+    color: var(--color-red); /* Color de la pasión */
+    margin-bottom: 40px;
+    letter-spacing: 3px; /* Más espaciado */
+}
+
+/* 🖱️ Controles de Filtro */
+.finder-filters {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Más espacio entre botones */
+    margin-bottom: 60px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--color-text-light); 
+    font-size: 0.9rem;
+    font-weight: 500; 
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 5px 12px;
+    transition: all 0.2s ease;
+}
+
+/* Filtro Activo (Más llamativo) */
+.filter-btn.active {
+    color: var(--color-text-dark);
+    font-weight: 700;
+    /* Borde Rojo, más grueso y notorio */
+    border: 3px solid var(--color-blue); 
+    padding: 4px 12px; 
+}
+/* Hover para filtro inactivo (Se pone rojo) */
+.filter-btn:not(.active):hover {
+    color: var(--color-red); 
+}
+
+
+/* 🧱 Contenido de la Cuadrícula (Grid Base) */
+.finder-content-grid {
+    display: grid;
+    gap: 20px;
+    max-width: 1500px; 
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+/* ➡️ REGLA ESPECÍFICA: 4 Columnas para Destinos */
+.finder-content-grid.grid-4-cols {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1200px; 
+}
+
+/* ➡️ REGLA ESPECÍFICA: 6 Columnas para Meses */
+.finder-content-grid.grid-6-cols {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 1400px;
+}
+
+/* 🖼️ Estilo de Cada Elemento de la Cuadrícula */
+.grid-item {
+    position: relative;
+    overflow: hidden;
+    /* Altura base para proporciones cuadradas */
+    height: 350px; 
+    cursor: pointer;
+    /* Transiciones para la animación de hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    border-radius: 5px; 
+}
+
+/* Hover de la Tarjeta (Efecto animado y divertido) */
+.grid-item:hover {
+    transform: translateY(-5px); /* Se mueve ligeramente hacia arriba */
+    /* Sombra con un toque rojo para hacerlo saltar */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 0 3px; 
+    z-index: 10;
+}
+
+/* Altura optimizada para 6 columnas */
+.finder-content-grid.grid-6-cols .grid-item {
+    height: 320px; 
+}
+
+.grid-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    display: block;
+    filter: brightness(0.9); 
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+/* Hover en la Imagen */
+.grid-item:hover .grid-image {
+    transform: scale(1.03); /* Zoom suave */
+    filter: brightness(1.1); /* Ligeramente más brillante */
+}
+
+/* Etiqueta de Texto (Destino o Mes) */
+.item-label {
+    position: absolute;
+    bottom: 25px; 
+    left: 20px; 
+    transform: none; 
+    color: white;
+    font-size: 1.2rem; 
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    z-index: 2;
+    text-align: left;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+/*
+  =======================================
+  SECCIÓN 5: TESTIMONIOS (CARRUSEL FUNCIONAL)
+  =======================================
+*/
+
+.testimonials-section {
+    padding: 80px 0 100px;
+    /* *** CAMBIO CLAVE: Nuevo color de fondo gris claro *** */
+    background-color: #F8F8F8; /* Un gris muy sutil (blanco roto) */
+    text-align: center;
+}
+
+/* Título de la Sección */
+.testimonials-main-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin-bottom: 70px; 
+    letter-spacing: 1.5px;
+}
+
+/* Wrapper que establece el marco de visualización (oculta lo que no cabe) */
+.testimonial-carousel-wrapper {
+    overflow: hidden; 
+    width: 100%;
+}
+
+/* Contenido del Carrusel (Se mueve con transform) */
+.testimonial-content-scroll {
+    display: flex;
+    /* Ancho total = Número de tarjetas * Ancho de tarjeta */
+    width: 100%; 
+    transition: transform 0.8s ease-in-out; 
+}
+
+/* Estilo de la Tarjeta de Testimonio */
+.testimonial-card {
+    /* *** CLAVE: CADA TARJETA OCUPA EL 50% DE LA VISTA *** */
+    flex: 0 0 50%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 5%; /* Padding lateral interno para separar imagen/texto del borde */
+}
+
+/* 📸 Contenedor Circular de Imagen */
+.testimonial-image-wrapper {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+}
+.testimonial-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Contenido del Texto */
+.testimonial-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quote-icon {
+    font-size: 4rem; 
+    color: var(--color-blue); 
+    line-height: 1;
+    margin-bottom: -10px;
+    font-family: 'Times New Roman', serif;
+    font-weight: 700;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 20px;
+    font-style: italic; 
+    text-transform: uppercase;
+    max-width: 80%; /* Ajuste al 80% del 50% de la pantalla */
+}
+
+.quote-author {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-text-dark); 
+    text-transform: uppercase;
+}
+
+/* *** PUNTOS DE NAVEGACIÓN (DOTS) *** */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc; 
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--color-blue); 
+    transform: scale(1.2); 
+}
+
+/*
+  =======================================
+  SECCIÓN 6: POR QUÉ ELEGIRNOS (ICONOS SOBRIOS Y ELEGANTES)
+  =======================================
+*/
+
+.why-choose-us-section {
+    padding: 80px 0 100px;
+    background-color: white; 
+    text-align: center;
+}
+
+.why-main-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+}
+
+/* Línea decorativa sutil debajo del título */
+.title-underline {
+    width: 60px;
+    height: 2px;
+    background-color: #DDAA88; /* Color tierra sutil */
+    margin: 0 auto 60px;
+}
+
+.value-icon-grid {
+    display: flex;
+    /* CLAVE: Espaciado uniforme y amplio, similar a la imagen */
+    justify-content: space-around; 
+    flex-wrap: wrap;
+    gap: 20px; 
+    /* Max-width mayor para que se vea más extendido */
+    max-width: 1400px; 
+    padding: 0 40px; 
+    margin: 0 auto;
+}
+
+.value-item {
+    /* CLAVE: Le damos más ancho para que el texto no se rompa tanto. */
+    /* Calculado para 5 items con buen espacio entre ellos */
+    flex: 0 0 18%; 
+    max-width: 250px; 
+    padding: 20px 0px; 
+    text-align: center;
+}
+
+/* Nuevo contenedor para el ícono de imagen */
+.value-icon-wrapper {
+    /* CLAVE: Aumentamos el tamaño a 80-90px para más presencia visual */
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 30px; /* Más margen inferior para separar del texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.value-icon-img {
+    /* La imagen ocupará el 100% de su contenedor (90x90px) */
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+    object-fit: contain; 
+}
+
+.value-label {
+    /* Hacemos el texto un poco más grande y elegante */
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    line-height: 1.4;
+    text-transform: none; 
+    /* Opcional: Si quieres la fuente estilizada, usa 'Times New Roman' o una fuente serif sobria */
+    /* font-family: 'Georgia', serif; */ 
+}
+
+/* -------------------- */
+/* SECCIÓN 7: CTA (SO, READY TO START?) */
+/* -------------------- */
+
+.cta-section {
+    /* Color de fondo naranja rojizo, similar a la imagen 8.39.59 p.m. */
+    background-color: #a43814; 
+    padding: 80px 0;
+    text-align: center;
+    /* Patrón de líneas sutil de la imagen 8.39.59 p.m. (opcional: requiere imagen de fondo) */
+    /* background-image: url('url-de-tu-patron'); 
+       background-size: cover; */
+}
+
+.cta-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.cta-btn {
+    /* Botón negro con texto blanco */
+    background-color: black;
+    border: 1px solid black; 
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 15px 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: white;
+    color: black;
+}

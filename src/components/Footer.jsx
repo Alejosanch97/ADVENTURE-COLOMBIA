@@ -1,11 +1,16 @@
+import React from 'react';
+import "../Styles/footer.css";
+
 export const Footer = () => (
-	<footer className="footer mt-auto py-3 text-center">
-		<p>
-			Check the <a target="_blank" href="https://4geeks.com/docs/start/start-react-advanced">template documentation</a> <i className="fa-solid fa-file"></i> for help.
-		</p>
-		<p>
-			Made with <i className="fa fa-heart text-danger" /> by{" "}
-			<a href="http://www.4geeksacademy.com">4Geeks Academy</a>
-		</p>
-	</footer>
+    <footer className="simple-footer">
+        <div className="container footer-content">
+            <p className="footer-brand">ADVENTURE COLOMBIA</p>
+            <p className="footer-credits">
+                Un proyecto de <strong>Daniel Gutiérrez</strong>
+            </p>
+            <p className="footer-motto">
+                Creado por un explorador con la pasión de hacer realidad cada sueño.
+            </p>
+        </div>
+    </footer>
 );
