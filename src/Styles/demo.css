@@ -421,3 +421,403 @@ body {
     /* 3. Punto de anclaje forzado */
     scroll-snap-align: start; 
 }
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tabletas y dispositivos medianos (max-width: 1024px) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* 1. Ajuste de Variables para el Indicador Fijo */
+    :root {
+        --indicator-size: 200px; /* Reducir el tamaño del círculo */
+        --dot-offset: 100px;     /* Nuevo radio del círculo */
+        --dot-size: 20px;        /* Reducir el tamaño del punto */
+        --dot-scale-factor: 1.4;
+        --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 8px); 
+    }
+
+    /* 2. Ajuste de Contenido de Texto */
+    .step-text-details {
+        max-width: 320px;
+        padding: 30px 0;
+    }
+
+    .step-small-title {
+        font-size: 1.3rem; 
+    }
+
+    .step-title-alt {
+        font-size: 2.2rem; 
+    }
+
+    .step-description {
+        font-size: 1.1rem; 
+    }
+
+    /* 3. Ajuste del Título Fijo */
+    .how-it-works-title {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+        top: calc(50% + var(--indicator-size) / 2 + 100px); /* Ajustar posición */
+    }
+}
+
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos medianos (max-width: 1024px) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* 1. Ajuste de Variables para el Indicador Fijo */
+    :root {
+        --indicator-size: 200px; /* Reducir el tamaño del círculo */
+        --dot-offset: 100px;     /* Nuevo radio del círculo */
+        --dot-size: 20px;        /* Reducir el tamaño del punto */
+        --dot-scale-factor: 1.4;
+        --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 8px); 
+    }
+
+    /* 2. Ajuste de Contenido de Texto */
+    .step-text-details {
+        max-width: 320px;
+        padding: 30px 0;
+    }
+
+    .step-small-title {
+        font-size: 1.3rem; 
+    }
+
+    .step-title-alt {
+        font-size: 2.2rem; 
+    }
+
+    .step-description {
+        font-size: 1.1rem; 
+    }
+
+    /* 3. Ajuste del Título Fijo */
+    .how-it-works-title {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+        top: calc(50% + var(--indicator-size) / 2 + 100px); /* Ajustar posición */
+    }
+}
+
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos medianos (max-width: 1024px) */
+/* (Mantiene el indicador fijo, pero lo hace más pequeño) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* 1. Ajuste de Variables para el Indicador Fijo */
+    :root {
+        --indicator-size: 200px; /* Reducir el tamaño del círculo */
+        --dot-offset: 100px;     /* Nuevo radio del círculo */
+        --dot-size: 20px;        /* Reducir el tamaño del punto */
+        --dot-scale-factor: 1.4;
+        --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 8px); 
+    }
+
+    /* 2. Ajuste de Contenido de Texto */
+    .step-text-details {
+        max-width: 320px;
+        padding: 30px 0;
+    }
+
+    .step-small-title {
+        font-size: 1.3rem; 
+    }
+
+    .step-title-alt {
+        font-size: 2.2rem; 
+    }
+
+    .step-description {
+        font-size: 1.1rem; 
+    }
+
+    /* 3. Ajuste del Título Fijo */
+    .how-it-works-title {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+        top: calc(50% + var(--indicator-size) / 2 + 100px); 
+    }
+}
+
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos medianos (max-width: 1024px) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* 1. Ajuste de Variables para el Indicador Fijo */
+    :root {
+        --indicator-size: 200px;
+        --dot-offset: 100px;
+        --dot-size: 20px;
+        --dot-scale-factor: 1.4;
+        --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 8px); 
+    }
+
+    /* 2. Ajuste de Contenido de Texto */
+    .step-text-details {
+        max-width: 320px;
+        padding: 30px 0;
+    }
+
+    .step-small-title {
+        font-size: 1.3rem; 
+    }
+
+    .step-title-alt {
+        font-size: 2.2rem; 
+    }
+
+    .step-description {
+        font-size: 1.1rem; 
+    }
+
+    /* 3. Ajuste del Título Fijo */
+    .how-it-works-title {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+        top: calc(50% + var(--indicator-size) / 2 + 100px); 
+    }
+}
+
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos medianos (max-width: 1024px) */
+/* (Se mantiene el indicador fijo más pequeño) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* 1. Ajuste de Variables para el Indicador Fijo */
+    :root {
+        --indicator-size: 200px;
+        --dot-offset: 100px;
+        --dot-size: 20px;
+        --dot-scale-factor: 1.4;
+        --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 8px); 
+    }
+
+    /* 2. Ajuste de Contenido de Texto */
+    .step-text-details {
+        max-width: 320px;
+        padding: 30px 0;
+    }
+
+    .step-small-title {
+        font-size: 1.3rem; 
+    }
+
+    .step-title-alt {
+        font-size: 2.2rem; 
+    }
+
+    .step-description {
+        font-size: 1.1rem; 
+    }
+
+    /* 3. Ajuste del Título Fijo */
+    .how-it-works-title {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+        top: calc(50% + var(--indicator-size) / 2 + 100px); 
+    }
+}
+
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos medianos (max-width: 1024px) */
+/* (Se mantiene el indicador fijo más pequeño) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* 1. Ajuste de Variables para el Indicador Fijo */
+    :root {
+        --indicator-size: 200px;
+        --dot-offset: 100px;
+        --dot-size: 20px;
+        --dot-scale-factor: 1.4;
+        --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 8px); 
+    }
+
+    /* 2. Ajuste de Contenido de Texto */
+    .step-text-details {
+        max-width: 320px;
+        padding: 30px 0;
+    }
+
+    .step-small-title {
+        font-size: 1.3rem; 
+    }
+
+    .step-title-alt {
+        font-size: 2.2rem; 
+    }
+
+    .step-description {
+        font-size: 1.1rem; 
+    }
+
+    /* 3. Ajuste del Título Fijo */
+    .how-it-works-title {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+        top: calc(50% + var(--indicator-size) / 2 + 100px); 
+    }
+}
+
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos medianos (max-width: 1024px) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* (Se mantienen los ajustes de Tabletas) */
+    :root {
+        --indicator-size: 200px;
+        --dot-offset: 100px;
+        --dot-size: 20px;
+        --dot-scale-factor: 1.4;
+        --dot-orbit-distance: calc(var(--dot-offset) - (var(--dot-size) / 2) + 8px); 
+    }
+
+    .step-text-details {
+        max-width: 320px;
+        padding: 30px 0;
+    }
+
+    .step-small-title {
+        font-size: 1.3rem; 
+    }
+
+    .step-title-alt {
+        font-size: 2.2rem; 
+    }
+
+    .step-description {
+        font-size: 1.1rem; 
+    }
+
+    .how-it-works-title {
+        font-size: 1.8rem;
+        letter-spacing: 5px;
+        top: calc(50% + var(--indicator-size) / 2 + 100px); 
+    }
+}
+
+
+/* ---------------------------------------------------- */
+/* RESPONSIVE SMARTPHONES (max-width: 767px) */
+/* ---------------------------------------------------- */
+@media (max-width: 767px) {
+
+    /* Desactivar scroll-snap en móvil */
+    body {
+        scroll-snap-type: none !important;
+    }
+
+    .how-it-works-page {
+        min-height: auto !important;
+    }
+
+    /* Cada step ahora se apila verticalmente */
+    .step-section {
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        overflow: visible !important; /* 👉 CORRECCIÓN CLAVE */
+    }
+
+    .step-content-container {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    /* Ocultar indicador */
+    .fixed-step-indicator,
+    .how-it-works-title {
+        display: none !important;
+    }
+
+    /* TEXTO ARRIBA */
+    .step-half.step-text-side {
+        order: 1 !important;
+        width: 100% !important;
+        padding: 40px 20px !important;
+        height: auto !important;
+        min-height: auto !important;
+        display: flex !important;
+        justify-content: center !important;
+        text-align: center !important;
+    }
+
+    /* IMAGEN ABAJO */
+    .step-half.step-image-side {
+        order: 2 !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 250px !important;
+        max-height: 400px !important;
+        overflow: hidden !important; /* asegura visibilidad sin recortes */
+    }
+
+    .step-image {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        display: block !important;
+    }
+
+    /* Tipografía */
+    .step-title-alt {
+        font-size: 1.7rem !important;
+    }
+
+    .step-description {
+        font-size: 1rem !important;
+        margin-bottom: 20px !important;
+    }
+}

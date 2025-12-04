@@ -63,40 +63,37 @@ export const Navbar = () => {
                 {/* Enlaces de Navegación: Añadimos la clase 'open' si menuOpen es true */}
                 <div className={`navbar-links ${menuOpen ? 'open' : ''}`}> 
                     <HashLink to="/#top" className="nav-item" onClick={closeMenu}>Inicio</HashLink> 
+                    <NavLink to="/demo" className={getNavLinkClass} onClick={closeMenu}>NUESTRO PROCESO</NavLink>
+                    <NavLink to="/colombia" className={getNavLinkClass} onClick={closeMenu}>Colombia</NavLink>
+                    <NavLink to="/todos-los-viajes" className={getNavLinkClass} onClick={closeMenu}>VIAJES</NavLink>
                     
-                    <HashLink 
-                        to="/#sobre-nosotros" 
-                        className="nav-item"
-                        scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })} 
-                        onClick={closeMenu}
+                    {/* Botón de Contacto VERSIÓN MÓVIL (nav-button-mobile) - Se oculta en desktop por CSS */}
+                    <a
+                        href="https://wa.me/3023042213"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="nav-button-link nav-button-mobile" 
+                        onClick={closeMenu} 
                     >
-                        Sobre nosotros
-                    </HashLink>
-                    
-                    <NavLink to="/servicios" className={getNavLinkClass} onClick={closeMenu}>Servicios</NavLink>
-                    <NavLink to="/proyectos" className={getNavLinkClass} onClick={closeMenu}>Proyectos</NavLink>
-                    
-                    {/* Botón de Contacto (Duplicado o movido para que esté dentro del menú móvil si es necesario) */}
-                    <HashLink 
-                        to="/#contacto" 
-                        className="nav-button-link nav-button-mobile" // Clase extra para control en móvil
-                        scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })} 
-                        onClick={closeMenu}
-                    >
-                        <button className="nav-button">Contacto</button>
-                    </HashLink>
+                        <div className="cta-btn"> 
+                            CONTÁCTANOS
+                        </div>
+                    </a>
                 </div>
 
-                {/* Se mantiene el botón de Contacto fuera de navbar-links para desktop si lo quieres fijo a la derecha */}
-                {/* Lo envolvemos en un fragmento o lo dejamos como estaba si queremos ocultar la versión de escritorio en móvil */}
+                {/* BOTÓN DE CONTACTO VERSIÓN ESCRITORIO (navbar-button-desktop) */}
                 <div className="navbar-button-desktop">
-                    <HashLink 
-                        to="/#contacto" 
-                        className="nav-button-link"
-                        scroll={(el) => el.scrollIntoView({ behavior: 'smooth' })} 
+                    {/* AQUI ESTABA EL CODIGO DUPLICADO QUE CAUSABA EL SEGUNDO BOTÓN */}
+                    <a
+                        href="https://wa.me/3023042213"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="nav-button-link" // Solo se usa la clase base de estilo de enlace
                     >
-                        <button className="nav-button">Contacto</button>
-                    </HashLink>
+                        <div className="cta-btn">
+                            CONTÁCTANOS
+                        </div>
+                    </a>
                 </div>
             </div>
         </nav>

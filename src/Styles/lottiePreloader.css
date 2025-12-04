@@ -1,0 +1,340 @@
+/* lottiePreloader.css - CLASES Y VARIABLES ÚNICAS */
+
+/* Variables de Color Únicas (Ajustadas al nuevo look oscuro de la Imagen 2) */
+:root {
+    /* Fondo: Gris oscuro muy profundo, casi negro. */
+    --lottie-01-color-background: #1a1a1a; 
+    --lottie-01-color-progress: #3498db; /* Azul de progreso (mantenido para la barra) */
+    --lottie-01-color-text-light: #ffffff; /* Blanco puro para el texto principal (Dream, Explore) */
+    --lottie-01-color-text-secondary: #aaaaaa; /* Gris para el mensaje de carga */
+    --lottie-01-color-adventure-red: #e74c3c; /* ROJO VIBRANTE para Adventure */
+}
+
+/* --- Contenedor Principal (Pantalla Completa) --- */
+.lottie-preloader-container-full {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    
+    /* ************************************************* */
+    /* MODIFICACIÓN CLAVE: AGREGAR IMAGEN DE FONDO con URL de Cloudinary */
+    /* ************************************************* */
+    /* 1. Usar la URL de Cloudinary. Esto ayuda a la carga rápida por ser un CDN. */
+    background-image: url('https://res.cloudinary.com/duqi8oy4a/image/upload/v1764810182/v660-mon-04-travelbadge_tqbta7.jpg'); 
+
+    background-size: cover; /* Hace que la imagen cubra todo el contenedor */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center center; /* Centra la imagen */
+
+    /* 2. Aplicar un gradiente oscuro semi-transparente y luego el color de fondo. */
+    /* Esto garantiza un contraste óptimo para el texto blanco y simula la oscuridad. */
+    background-image: 
+        linear-gradient(rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7)), /* Overlay oscuro */
+        url('https://res.cloudinary.com/duqi8oy4a/image/upload/v1764810182/v660-mon-04-travelbadge_tqbta7.jpg');
+    
+    /* El background-color original se usa como color de base, y se mantiene el blend mode 
+       aunque ya no es tan necesario gracias al gradiente. */
+    background-color: var(--lottie-01-color-background); 
+    background-blend-mode: normal; /* Cambiado a normal ya que el gradiente ya oscurece */
+
+    z-index: 9999; 
+    transition: opacity 0.5s ease;
+}
+
+/* --- Contenido Central (Alinea los elementos) --- */
+.lottie-preloader-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0; 
+    background: none; 
+    box-shadow: none; 
+    border: none;
+    
+    opacity: 0;
+    /* AJUSTE: Mueve el contenido 5% de la altura de la pantalla hacia abajo para centrarlo visualmente */
+    transform: translateY(5vh); 
+    /* La animación fadeIn aplica a todo el wrapper */
+    animation: fadeIn 0.8s forwards;
+}
+
+
+/* --- MARCADORES DE ESQUINA (Corner Markers) --- */
+
+.lottie-preloader-corner-marker {
+    position: absolute;
+    width: 50px; /* Longitud de los lados de la "L" */
+    height: 50px; 
+    border-color: var(--lottie-01-color-text-light); /* Color blanco o ligeramente gris */
+    border-style: solid;
+    z-index: 10000; /* Asegura que estén sobre todo lo demás */
+}
+
+/* Esquina Superior Izquierda: Solo bordes derecho e inferior */
+.lottie-preloader-corner-marker.top-left {
+    top: 20px;
+    left: 20px;
+    border-width: 0 0 3px 3px; /* Bottom and Left border */
+}
+
+/* Esquina Superior Derecha: Solo bordes izquierdo e inferior */
+.lottie-preloader-corner-marker.top-right {
+    top: 20px;
+    right: 20px;
+    border-width: 0 3px 3px 0; /* Bottom and Right border */
+}
+
+/* Esquina Inferior Izquierda: Solo bordes derecho y superior */
+.lottie-preloader-corner-marker.bottom-left {
+    bottom: 20px;
+    left: 20px;
+    border-width: 3px 0 0 3px; /* Top and Left border */
+}
+
+/* Esquina Inferior Derecha: Solo bordes izquierdo y superior */
+.lottie-preloader-corner-marker.bottom-right {
+    bottom: 20px;
+    right: 20px;
+    border-width: 3px 3px 0 0; /* Top and Right border */
+}
+
+
+/* --- Texto Dinámico (Dream. Explore. Adventure.) --- */
+
+.lottie-preloader-dynamic-text-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px; /* Separación de la animación Lottie */
+    text-align: center;
+}
+
+.lottie-preloader-dynamic-word {
+    /* TAMAÑO GIGANTE Y RESPONSIVO */
+    font-size: 5vw; 
+    font-weight: 300; /* Estilo limpio y ligero (se asume una fuente sans-serif ligera) */
+    color: var(--lottie-01-color-text-light); 
+    margin: 0;
+    line-height: 1.2;
+    overflow: hidden; 
+    opacity: 0; /* Inicialmente invisible */
+}
+
+/* Estilo específico: La palabra "Adventure" más destacada */
+.lottie-preloader-dynamic-word.word-3 {
+    font-weight: 700; /* Más gruesa */
+    /* CORRECCIÓN: Color ROJO solicitado */
+    color: var(--lottie-01-color-adventure-red); 
+    /* Un poco más grande para darle énfasis */
+    font-size: 6vw;
+}
+
+
+/* Animación Staggered (Palabra por palabra) - Utilizamos 'slideInText' con retrasos */
+.lottie-preloader-dynamic-word.word-1 {
+    animation: slideInText 0.8s forwards 0.5s; /* Dream. empieza 0.5s */
+}
+.lottie-preloader-dynamic-word.word-2 {
+    animation: slideInText 0.8s forwards 1.0s; /* Explore. empieza 1.0s (0.5s después) */
+}
+.lottie-preloader-dynamic-word.word-3 {
+    animation: slideInText 0.8s forwards 1.5s; /* Adventure. empieza 1.5s (0.5s después) */
+}
+
+
+/* --- Animación Lottie (Avión) GIGANTE (Clase para referencia, si se usa) --- */
+.lottie-preloader-animation {
+    /* TAMAÑO MÁS GRANDE */
+    width: 350px; 
+    height: 350px; 
+    margin-bottom: 60px; 
+    opacity: 0;
+    /* Aparece después de que el texto ha terminado de mostrarse (2.0s) */
+    animation: pulseLottie 2s infinite ease-in-out, fadeIn 1s forwards 2.0s; 
+}
+
+
+/* --- Mensaje de Carga y Barra --- */
+
+.lottie-preloader-loading-message-dynamic {
+    font-size: 1.2rem; 
+    color: var(--lottie-01-color-text-secondary); 
+    font-weight: 300;
+    font-style: italic; 
+    margin-bottom: 20px;
+    opacity: 0;
+    /* Aparece después de la animación Lottie (2.5s) */
+    animation: fadeInMessage 1.5s forwards 2.5s; 
+}
+
+/* Barra de Progreso Más Ancha y Delgada */
+.lottie-preloader-loading-bar-placeholder {
+    width: 400px; 
+    height: 4px; 
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-radius: 5px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInMessage 1.5s forwards 2.5s; 
+}
+
+.lottie-preloader-loading-bar-progress {
+    width: 10%; 
+    height: 100%;
+    /* Usa la variable de progreso única */
+    background: linear-gradient(90deg, var(--lottie-01-color-progress) 0%, #a2c8e3 100%); 
+    border-radius: 5px;
+    animation: loadingStripes 1.8s infinite cubic-bezier(0.65, 0.815, 0.735, 0.395);
+    transform: translateX(-100%);
+}
+
+/* --- Keyframes (No necesitan prefijo) --- */
+
+@keyframes pulseLottie {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); } 
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes fadeInMessage {
+    to { opacity: 1; }
+}
+
+@keyframes loadingStripes {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(1000%); }
+}
+
+/* Animación ajustada para un fade-in y ligera subida */
+@keyframes slideInText {
+    0% { transform: translateY(10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tabletas (max-width: 1024px) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* Corner Markers (Reducir el tamaño y la distancia de las esquinas) */
+    .lottie-preloader-corner-marker {
+        width: 40px; 
+        height: 40px; 
+        border-width: 3px !important;
+    }
+    .lottie-preloader-corner-marker.top-left,
+    .lottie-preloader-corner-marker.top-right {
+        top: 15px;
+    }
+    .lottie-preloader-corner-marker.bottom-left,
+    .lottie-preloader-corner-marker.bottom-right {
+        bottom: 15px;
+    }
+    .lottie-preloader-corner-marker.top-left,
+    .lottie-preloader-corner-marker.bottom-left {
+        left: 15px;
+    }
+    .lottie-preloader-corner-marker.top-right,
+    .lottie-preloader-corner-marker.bottom-right {
+        right: 15px;
+    }
+    
+    /* Texto Dinámico (Reducir el tamaño relativo a la pantalla) */
+    .lottie-preloader-dynamic-word {
+        font-size: 6vw; /* Ligeramente más grande que 5vw */
+    }
+    .lottie-preloader-dynamic-word.word-3 {
+        font-size: 7.5vw; /* Ligeramente más grande que 6vw */
+    }
+
+    /* Animación Lottie */
+    .lottie-preloader-animation {
+        width: 300px; 
+        height: 300px; 
+        margin-bottom: 50px; 
+    }
+
+    /* Barra de Progreso */
+    .lottie-preloader-loading-bar-placeholder {
+        width: 350px; 
+    }
+}
+
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Smartphones (max-width: 767px) */
+/* ---------------------------------------------------- */
+@media (max-width: 767px) {
+    
+    /* Contenido Central (Asegurar que el contenido se vea en el centro de la pantalla) */
+    .lottie-preloader-content-wrapper {
+        padding: 0 15px; /* Asegurar que no toque los bordes */
+    }
+    
+    /* Corner Markers (Más pequeños y cerca del borde) */
+    .lottie-preloader-corner-marker {
+        width: 30px; 
+        height: 30px; 
+        border-width: 2px !important; /* Bordes más delgados */
+    }
+    .lottie-preloader-corner-marker.top-left,
+    .lottie-preloader-corner-marker.top-right {
+        top: 10px;
+    }
+    .lottie-preloader-corner-marker.bottom-left,
+    .lottie-preloader-corner-marker.bottom-right {
+        bottom: 10px;
+    }
+    .lottie-preloader-corner-marker.top-left,
+    .lottie-preloader-corner-marker.bottom-left {
+        left: 10px;
+    }
+    .lottie-preloader-corner-marker.top-right,
+    .lottie-preloader-corner-marker.bottom-right {
+        right: 10px;
+    }
+    
+    /* Texto Dinámico */
+    .lottie-preloader-dynamic-text-group {
+        margin-bottom: 30px; 
+    }
+
+    .lottie-preloader-dynamic-word {
+        font-size: 9vw; /* Texto más grande para dominar la pequeña pantalla */
+        line-height: 1.1;
+    }
+    .lottie-preloader-dynamic-word.word-3 {
+        font-size: 11vw; /* "Adventure" más destacado */
+    }
+
+    /* Animación Lottie */
+    .lottie-preloader-animation {
+        width: 200px; 
+        height: 200px; 
+        margin-bottom: 40px; 
+    }
+
+    /* Mensaje de Carga */
+    .lottie-preloader-loading-message-dynamic {
+        font-size: 1rem; 
+    }
+
+    /* Barra de Progreso */
+    .lottie-preloader-loading-bar-placeholder {
+        width: 90%; /* Ocupa casi todo el ancho disponible */
+    }
+}

@@ -1,0 +1,609 @@
+/* internationalTripPage.css */
+
+/* ------------------------------------------------------------------ */
+/* --- ESTILOS GENERALES DE PÁGINA Y WRAPPER --- */
+/* ------------------------------------------------------------------ */
+
+/* ✅ CORRECCIÓN DE FOOTER DE PÁGINA: Asegura que la página ocupe toda la altura visible y empuje el footer global hacia abajo si hay poco contenido. */
+.international-page-wrapper {
+    min-height: 100vh; /* Asegura que la página ocupe toda la altura visible */
+    display: flex;
+    flex-direction: column;
+}
+
+.page-hero-international-unique {
+    /* Mantiene el degradado rojo solicitado */
+    background: linear-gradient(135deg, #502c2c 0%, #ff0000 100%);
+    padding: 100px 0;
+    color: #fff;
+    text-align: center;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.international-container-unique {
+    width: 90%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.international-breadcrumb-unique {
+    font-size: 0.9em;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.international-breadcrumb-unique a {
+    color: #fff;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+.international-breadcrumb-unique a:hover {
+    opacity: 0.9;
+}
+
+.international-main-title-unique {
+    font-size: 4em;
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: 5px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
+}
+
+.international-trips-content-section-unique {
+    padding: 60px 0;
+    background-color: #ffffff; 
+    /* CLAVE: Ocupa todo el espacio restante para empujar el footer de página */
+    flex-grow: 1; 
+}
+
+.international-month-subtitle-unique {
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: left;
+    margin: 40px 0 20px;
+    color: #2c3e50; 
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 10px;
+}
+
+/* ✅ ESTILO MEJORADO: Mensaje cuando no hay viajes */
+.international-no-trips-message-unique {
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    margin: 50px auto 100px; 
+    color: #cc0000; 
+    max-width: 600px;
+    line-height: 1.4;
+    padding: 20px;
+    border: 2px dashed #ffbaba;
+    background-color: #fffafa;
+    border-radius: 10px;
+}
+
+/* --- Estilos del Grid (Contenedor de Tarjetas) --- */
+.international-trips-grid-unique {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 30px;
+    margin-bottom: 50px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilo específico cuando hay SÓLO UNA tarjeta */
+.international-trips-grid-unique:has(.travel-card-unique:only-child) {
+    max-width: 500px; 
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr;
+}
+
+/* Estilo específico cuando hay EXACTAMENTE DOS tarjetas */
+.international-trips-grid-unique:has(.travel-card-unique:nth-child(1)):has(.travel-card-unique:nth-child(2)):not(:has(.travel-card-unique:nth-child(3))) {
+    max-width: 850px; 
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* ------------------------------------------------------------------ */
+/* --- ESTILOS DE LA TARJETA (CLASES ÚNICAS UNIVERSALES) --- */
+/* ------------------------------------------------------------------ */
+
+/* --- Estilos de la Tarjeta BASE (Altura Fija para Proporcionalidad) --- */
+.travel-card-unique {
+    background-color: #fff;
+    border-radius: 12px; 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); 
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    cursor: pointer;
+    /* AJUSTE CLAVE: Fijamos la altura al valor más grande (footer dual) */
+    height: 570px; 
+}
+
+.travel-card-unique:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Encabezado y etiquetas */
+.travel-card-header-unique {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between; 
+    font-size: 0.9em; 
+    font-weight: 700;
+    z-index: 30; 
+}
+
+.travel-nights-label-unique, .travel-cups-label-unique {
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: #2c3e50; 
+    padding: 7px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.travel-card-image-unique {
+    width: 100%;
+    height: 100%; 
+    object-fit: cover;
+    display: block;
+    transition: filter 0.4s ease, transform 0.4s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.travel-card-unique:hover .travel-card-image-unique {
+    filter: brightness(0.2); 
+}
+
+/* Contenido Base (título y subtítulo) */
+.travel-card-content-base-unique {
+    position: absolute;
+    /* ✅ CORRECCIÓN 1: El degradado termina justo a 70px (altura del footer de 1 botón) */
+    bottom: 70px; 
+    left: 0;
+    right: 0;
+    padding: 25px 20px;
+    color: white;
+    text-align: left;
+    /* Degradado oscuro ampliado para legibilidad */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0) 100%);
+    z-index: 10; 
+    transition: opacity 0.4s ease;
+}
+
+.travel-card-title-unique {
+    font-size: 1.8em;
+    font-weight: 900;
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); 
+    line-height: 1.2;
+}
+
+/* MEJORA DE TEXTO: Frase motivacional o descripción */
+.travel-card-subtitle-unique {
+    font-size: 1.1em;
+    color: #e0e0e0;
+    margin-bottom: 0;
+    font-weight: 500;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    line-height: 1.4;
+}
+
+/* AJUSTE PARA PÁRRAFOS LARGOS: Restringe el alto para que no se salga */
+.description-text-unique {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limita a 2 líneas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 3.0em; /* Altura mínima para asegurar espacio */
+}
+
+/* Info de Hover */
+.travel-card-hover-info-unique {
+    position: absolute;
+    top: 60px; 
+    left: 0;
+    right: 0;
+    /* ✅ CORRECCIÓN 1b: Ajusta el final del área de hover */
+    bottom: 70px; 
+    padding: 15px 20px; 
+    color: white;
+    opacity: 0; 
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    z-index: 12; 
+    text-align: left;
+    overflow-y: auto; 
+    
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+}
+
+.travel-card-unique:hover .travel-card-content-base-unique { opacity: 0; }
+.travel-card-unique:hover .travel-card-hover-info-unique { opacity: 1; transform: translateY(0); transition-delay: 0.1s; }
+
+
+.travel-hover-details-wrapper-unique {
+    background-color: transparent; 
+    padding: 0; 
+    border-radius: 0;
+    border: none;
+}
+
+.travel-detail-row-unique {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1em;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.3); 
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 5px 10px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-radius: 5px;
+}
+
+.travel-detail-label-unique {
+    font-weight: bold;
+    color: #ffcc00; 
+}
+
+.travel-inclusions-title-unique {
+    font-size: 1.2em;
+    font-weight: 800;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 5px;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.travel-inclusions-list-unique {
+    list-style-type: '✔️ '; 
+    padding-left: 20px;
+    font-size: 0.95em;
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); 
+}
+.travel-inclusions-list-unique li {
+    margin-bottom: 4px;
+}
+
+
+/* ------------------------------------------------------------------ */
+/* --- FOOTER Y BOTONES (CLASES ÚNICAS UNIVERSALES) --- */
+/* ------------------------------------------------------------------ */
+
+.travel-card-footer-unique {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px; 
+    background-color: #2c3e50; 
+    z-index: 20; 
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    /* Altura por defecto (para dos botones) */
+    height: 90px; 
+    /* Por defecto, es column (para manejar el caso de dos botones) */
+    flex-direction: column; 
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* Estilos del Precio BASE */
+.travel-card-footer-unique .travel-price-footer-unique {
+    color: #f0f0f0;
+    font-size: 0.9em;
+    width: 100%;
+    display: flex; 
+    flex-direction: row; 
+    align-items: baseline;
+    justify-content: center; 
+    padding: 0 0 5px 0; 
+}
+
+.travel-card-footer-unique .travel-price-value-unique {
+    font-size: 1.6em; 
+    font-weight: 900;
+    color: #d9534f; 
+    margin-left: 5px;
+    margin-right: 5px;
+    white-space: nowrap; 
+}
+
+.travel-card-footer-unique .travel-price-currency-unique {
+    font-size: 0.85em; 
+    font-weight: 500;
+    color: #aaa;
+    margin-left: 2px;
+    white-space: nowrap;
+}
+
+
+/* --- 1. CASO DE DOS BOTONES (COMPORTAMIENTO ACTUAL, APILADO) --- */
+
+.travel-card-footer-unique.footer-two-buttons-unique {
+    /* Mantiene flex-direction: column; y height: 90px; */
+    padding: 5px 15px; 
+}
+
+/* Ajuste de tamaño de precio para el modo dual */
+.travel-card-footer-unique.footer-two-buttons-unique .travel-price-value-unique {
+    font-size: 1.4em; 
+}
+.travel-card-footer-unique.footer-two-buttons-unique .travel-price-currency-unique {
+    font-size: 0.8em;
+}
+
+/* Contenedor de Botones - Los dos botones están en una fila */
+.travel-card-footer-unique.footer-two-buttons-unique .travel-buttons-group-unique {
+    display: flex; 
+    justify-content: space-between;
+    width: 100%; 
+}
+
+/* Estilos de botones individuales dentro del grupo dual */
+.travel-card-footer-unique.footer-two-buttons-unique .travel-buttons-group-unique .travel-explore-btn-unique {
+    flex-grow: 1; 
+    flex-basis: 0; 
+    flex-shrink: 1; 
+    padding: 8px 5px; 
+    font-size: 0.8em; 
+    line-height: 1.2;
+    max-width: 50%;
+}
+
+.travel-card-footer-unique.footer-two-buttons-unique .travel-buttons-group-unique .btn-details-unique {
+    margin-right: 8px; 
+}
+
+
+/* --- 2. CASO DE UN SOLO BOTÓN (NUEVO COMPORTAMIENTO: Precio y Botón en una fila) --- */
+
+.travel-card-footer-unique.footer-one-button-unique {
+    /* 🎯 CAMBIO CLAVE: Cambiamos a fila */
+    flex-direction: row;
+    /* Altura más pequeña */
+    height: 70px; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px; 
+}
+
+/* Ajustamos la posición y tamaño del precio en modo un solo botón (fila) */
+.travel-card-footer-unique.footer-one-button-unique .travel-price-footer-unique {
+    width: auto; 
+    justify-content: flex-start; 
+    padding: 0; 
+}
+
+/* Restaura el tamaño grande del precio para el modo de un solo botón */
+.travel-card-footer-unique.footer-one-button-unique .travel-price-value-unique {
+    font-size: 1.6em; 
+}
+.travel-card-footer-unique.footer-one-button-unique .travel-price-currency-unique {
+    font-size: 0.85em;
+}
+
+/* Contenedor de Botones - Solo contiene un botón */
+.travel-card-footer-unique.footer-one-button-unique .travel-buttons-group-unique {
+    display: flex; 
+    justify-content: flex-end;
+    width: auto;
+}
+
+/* Estilo del botón único */
+.travel-card-footer-unique.footer-one-button-unique .travel-explore-btn-unique {
+    /* Estilos más compactos para el botón en la fila */
+    padding: 8px 15px; 
+    font-size: 0.85em; 
+    width: auto;
+    max-width: none;
+    flex-grow: 0; 
+}
+
+
+/* --- Estilos Base para Botones (para ambos casos) --- */
+.travel-explore-btn-unique {
+    /* Estilos universales */
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    text-align: center;
+}
+
+.travel-buttons-group-unique .btn-details-unique {
+    background-color: #4a69bd; 
+    box-shadow: 0 4px 10px rgba(74, 105, 189, 0.4);
+}
+
+.travel-buttons-group-unique .btn-details-unique:hover {
+    background-color: #3f58a3; 
+    box-shadow: 0 6px 12px rgba(74, 105, 189, 0.5);
+}
+
+.travel-buttons-group-unique .btn-whatsapp-unique {
+    background-color: #d9534f; 
+    box-shadow: 0 4px 10px rgba(217, 83, 79, 0.4);
+}
+
+.travel-buttons-group-unique .btn-whatsapp-unique:hover {
+    background-color: #c9302c;
+    box-shadow: 0 6px 12px rgba(217, 83, 79, 0.6);
+}
+
+/*
+  =======================================
+  RESPONSIVE DESIGN: TABLETS Y CELULARES
+  =======================================
+*/
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos grandes (max-width: 1024px) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    /* Ajustes Generales */
+    .international-container-unique {
+        width: 95%; /* Usar más ancho de pantalla */
+    }
+
+    /* Encabezado */
+    .page-hero-international-unique {
+        padding: 80px 0;
+        min-height: 200px;
+    }
+
+    .international-main-title-unique {
+        font-size: 3.2em;
+        letter-spacing: 3px;
+    }
+
+    .international-month-subtitle-unique {
+        font-size: 2em;
+        margin: 30px 0 15px;
+    }
+
+    /* Ajuste de Tarjetas: Altura */
+    .travel-card-unique {
+        /* Reducir ligeramente la altura para tablets */
+        height: 520px; 
+    }
+}
+
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Smartphones (max-width: 767px) */
+/* ---------------------------------------------------- */
+@media (max-width: 767px) {
+    /* Encabezado */
+    .page-hero-international-unique {
+        padding: 60px 0;
+        min-height: 150px;
+    }
+
+    .international-main-title-unique {
+        font-size: 2.2em; /* Título más compacto */
+        letter-spacing: 2px;
+    }
+
+    .international-breadcrumb-unique {
+        font-size: 0.8em;
+    }
+
+    .international-trips-content-section-unique {
+        padding: 40px 0;
+    }
+
+    .international-month-subtitle-unique {
+        font-size: 1.8em;
+        text-align: center; /* Centrar el subtítulo mensual en móvil */
+        margin: 30px 0 15px;
+    }
+
+    /* Grid de Tarjetas */
+    .international-trips-grid-unique {
+        /* Fuerza a una sola columna para móviles, ignora minmax */
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
+
+    /* Sobreescritura para asegurar que siempre haya 1 columna en móvil */
+    .international-trips-grid-unique:has(.travel-card-unique:only-child),
+    .international-trips-grid-unique:has(.travel-card-unique:nth-child(1)):has(.travel-card-unique:nth-child(2)):not(:has(.travel-card-unique:nth-child(3))) {
+        max-width: 100%;
+        grid-template-columns: 1fr;
+    }
+
+    /* --- AJUSTES DE TARJETA EN MÓVIL --- */
+
+    /* Altura de la Tarjeta */
+    .travel-card-unique {
+        /* Reducir la altura de la tarjeta a un valor más manejable en móvil */
+        height: 480px; 
+    }
+
+    /* Contenido de la Tarjeta */
+    .travel-card-title-unique {
+        font-size: 1.5em; /* Título más pequeño */
+    }
+
+    .travel-card-subtitle-unique {
+        font-size: 1em;
+    }
+
+    /* Información de Hover (Asegurar que sea legible y escrolable) */
+    .travel-card-hover-info-unique {
+        padding: 10px 15px;
+    }
+    
+    .travel-inclusions-title-unique {
+        font-size: 1.1em;
+    }
+
+    /* Footer (Pie de Tarjeta) */
+    /* El footer dual (90px) y el footer de un botón (70px) mantienen su altura para la proporción. */
+    .travel-card-footer-unique {
+        padding: 5px 10px;
+    }
+
+    /* Precio en modo dual (90px) */
+    .travel-card-footer-unique.footer-two-buttons-unique .travel-price-value-unique {
+        font-size: 1.3em; 
+    }
+
+    /* Botones en modo dual */
+    .travel-card-footer-unique.footer-two-buttons-unique .travel-buttons-group-unique .travel-explore-btn-unique {
+        padding: 8px 4px; /* Padding más compacto en botones */
+        font-size: 0.75em; /* Fuente más pequeña para que quepa el texto */
+    }
+
+    /* Precio en modo un solo botón (70px) */
+    .travel-card-footer-unique.footer-one-button-unique {
+        padding: 0 10px;
+    }
+
+    .travel-card-footer-unique.footer-one-button-unique .travel-price-value-unique {
+        font-size: 1.4em; /* Ligeramente más pequeño que el escritorio */
+    }
+    
+    /* Botón único */
+    .travel-card-footer-unique.footer-one-button-unique .travel-explore-btn-unique {
+        padding: 7px 12px;
+        font-size: 0.8em;
+    }
+}

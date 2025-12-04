@@ -91,6 +91,21 @@ const testimonials = [
     
 ];
 
+// ===============================================
+// FUNCIÓN CLAVE: Determina la ruta de navegación
+// ===============================================
+const getCountryPath = (countryName) => {
+    const normalizedName = countryName.toUpperCase();
+    if (normalizedName === 'COLOMBIA') {
+        // Ruta fija para Colombia
+        return '/colombia';
+    } else {
+        // Ruta dinámica para viajes internacionales (ej: /viajes-internacionales/peru)
+        // Convertimos el nombre a minúsculas para el parámetro de la URL
+        return `/viajes-internacionales/${countryName.toLowerCase()}`;
+    }
+};
+
 export const Home = () => {
     const videoSources = [video1];
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
@@ -245,7 +260,9 @@ export const Home = () => {
                     </p>
                     
                     {/* Aplicamos la clase para el hover Azul */}
-                    <button className="btn-start-journey btn-blue-hover">INICIA TU ADVENTURE</button>
+                    <Link to="/todos-los-viajes" className="btn-start-journey btn-blue-hover">
+                        INICIA TU ADVENTURE
+                    </Link>
                 </div>
             </section>
 
@@ -398,7 +415,7 @@ export const Home = () => {
                 </div>
             </section>
             {/* ======================================= */}
-            {/* SECCIÓN 4: HOW DO YOU TRAVEL? (FILTROS) */}
+            {/* SECCIÓN 4: HOW DO YOU TRAVEL? (FILTROS CORREGIDOS) */}
             {/* ======================================= */}
             <section className="travel-finder-section" id="viajes-por-mes">
                 <div className="container">
@@ -420,27 +437,34 @@ export const Home = () => {
                         </button>
                     </div>
 
-                    {/* Contenido de las Tarjetas (Grid) - CLASE DINÁMICA APLICADA AQUÍ */}
+                    {/* Contenido de las Tarjetas (Grid) */}
                     <div className={`finder-content-grid ${activeFilter === 'destination' ? 'grid-4-cols' : 'grid-6-cols'}`}>
                         
                         {/* Renderizar Destinos */}
                         {activeFilter === 'destination' && destinations.map((item, index) => (
-                            <div key={`dest-${index}`} className="grid-item">
-                                {/* *** CAMBIO CLAVE: Usamos item.image aquí *** */}
+                            // *** RUTA DINÁMICA POR PAÍS ***
+                            <Link 
+                                key={`dest-${index}`} 
+                                to={getCountryPath(item.name)} 
+                                className="grid-item destination-link"
+                            >
                                 <img src={item.image} alt={item.name} className="grid-image" />
-                                {/* *** CAMBIO CLAVE: Usamos item.name aquí *** */}
                                 <span className="item-label">{item.name}</span>
-                            </div>
+                            </Link>
                         ))}
 
-                        {/* Renderizar Meses */}
+                        {/* Renderizar Meses - ¡CORRECCIÓN APLICADA AQUÍ! */}
                         {activeFilter === 'month' && months.map((item, index) => (
-                            <div key={`month-${index}`} className="grid-item">
-                                {/* *** CAMBIO CLAVE: Usamos item.image aquí *** */}
+                            // *** RUTA DINÁMICA POR MES HACIA MonthlyTripPage ***
+                            <Link 
+                                key={`month-${index}`} 
+                                // to debe apuntar a la nueva ruta y pasar el mes en minúsculas
+                                to={`/viajes-por-mes/${item.name.toLowerCase()}`} 
+                                className="grid-item month-link"
+                            >
                                 <img src={item.image} alt={item.name} className="grid-image" />
-                                {/* *** CAMBIO CLAVE: Usamos item.name aquí *** */}
                                 <span className="item-label">{item.name}</span>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
@@ -559,9 +583,14 @@ export const Home = () => {
             <section className="cta-section">
                 <div className="container cta-content">
                     <h2 className="cta-title">LISTO PARA TU ADVENTURE?</h2>
-                    <button className="cta-btn">
-                        CONTACTANOS
-                    </button>
+                    <a
+                        href="https://wa.me/3023042213"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="cta-btn"
+                    >
+                        CONTÁCTANOS
+                    </a>
                 </div>
             </section>
         </main>

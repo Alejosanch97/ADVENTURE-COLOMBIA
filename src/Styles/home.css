@@ -849,13 +849,10 @@
 /* -------------------- */
 
 .cta-section {
-    /* Color de fondo naranja rojizo, similar a la imagen 8.39.59 p.m. */
+    /* Color de fondo que ya tenías */
     background-color: #a43814; 
     padding: 80px 0;
     text-align: center;
-    /* Patrón de líneas sutil de la imagen 8.39.59 p.m. (opcional: requiere imagen de fondo) */
-    /* background-image: url('url-de-tu-patron'); 
-       background-size: cover; */
 }
 
 .cta-title {
@@ -867,20 +864,325 @@
     letter-spacing: 2px;
 }
 
+/* ---------------------------------------------------- */
+/* ESTILOS DEL BOTÓN CTA (Fondo fijo con --color-acento) */
+/* ---------------------------------------------------- */
+
 .cta-btn {
-    /* Botón negro con texto blanco */
-    background-color: black;
-    border: 1px solid black; 
-    color: white;
+    /* **ESTADO NORMAL (RELLENO): Fondo de acento, Texto blanco** */
+    background-color: #060606; /* Usa tu color rosa/rojo acento */
+    border: 2px solid #060606; /* Borde del mismo color */
+    color: var(--color-texto-blanco); /* Texto blanco */
+    
+    /* Propiedades de diseño */
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700; /* Lo puse en 700 para que sea consistente con el de la navbar */
     text-transform: uppercase;
+    text-decoration: none; /* Asegura que no haya subrayado */
     padding: 15px 40px;
     cursor: pointer;
+    border-radius: 50px; /* Estilo de botón redondeado, puedes ajustarlo si quieres */
+    display: inline-block;
+    
+    /* La transición se mantiene, pero será inactiva en hover */
     transition: all 0.3s ease;
 }
 
-.cta-btn:hover {
-    background-color: white;
-    color: black;
+/* ELIMINAR LOS ESTILOS DE HOVER (Mantiene el mismo color fijo) */
+.cta-btn:hover,
+.cta-btn:focus {
+    /* Forzamos el color de fondo y borde a mantenerse igual que el estado normal */
+    background-color: var(--color-acento); 
+    border-color: var(--color-acento); 
+    color: var(--color-texto-blanco);
+    
+    /* Puedes añadir una sombra sutil para dar sensación de 'levantado' si quieres */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERIES (RESPONSIVE) - Para móviles y tabletas */
+/* ---------------------------------------------------- */
+
+/* ================================================= */
+/* 1. NAVBAR - CORRECCIÓN DE SYNTAXIS Y ESTILOS */
+/* ================================================= */
+
+/* Media Query para Tabletas y Dispositivos de Pantalla Mediana (hasta 1024px) */
+@media (max-width: 1024px) {
+    .navbar-logo {
+        margin-left: 0;
+    }
+    .logo {
+        height: 180px;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+    .navbar-button-desktop {
+        display: none;
+    }
+    .menu-toggle {
+        display: block;
+        font-size: 28px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--color-fondo-principal);
+        padding: 10px 0 20px 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        z-index: 999;
+    }
+
+    .navbar-links .nav-item {
+        width: 100%;
+        padding: 15px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-button-mobile {
+        display: flex !important;
+        width: 90%;
+        justify-content: center;
+        margin: 20px 0 10px 0;
+    }
+    .nav-button-mobile .cta-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+/* Media Query para Móviles Específicos (hasta 768px) */
+@media (max-width: 768px) {
+    .custom-navbar {
+        height: 70px;
+    }
+    .navbar-container {
+        padding: 0 15px;
+    }
+    .navbar-links {
+        top: 70px;
+    }
+    .logo {
+        height: 150px;
+    }
+}
+
+
+/* ================================================= */
+/* 2. HOME SECTIONS (Ajustes unificados) */
+/* ================================================= */
+
+/* GLOBAL Y TABLET (hasta 1024px) */
+@media (max-width: 1024px) {
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .difference-cards-col {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .card-item {
+        flex: 0 0 calc(50% - 30px);
+        max-width: 480px;
+    }
+
+    /* --- CORRECCIÓN SECCIÓN 3: POPULAR TRIPS (Tablet) --- */
+    .popular-trips-inner {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 20px;
+        max-width: 100%; /* Asegurar que el contenedor principal ocupe todo el ancho */
+    }
+    .trips-sidebar {
+        width: 100%;
+        text-align: center;
+        padding-top: 0;
+    }
+    .sidebar-title {
+        font-size: 3rem;
+    }
+    .trips-carousel {
+        width: 100%; /* El carrusel debe ocupar todo el ancho disponible */
+        overflow-x: hidden; /* Ocultamos el desbordamiento aquí */
+        margin-left: 0;
+    }
+    .carousel-content {
+        padding-bottom: 20px;
+    }
+    /* Fin de la corrección para la Sección 3 en Tablet */
+
+    .finder-content-grid.grid-4-cols {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 900px;
+    }
+    .finder-content-grid.grid-6-cols {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 95%;
+    }
+
+    .testimonial-card {
+        flex: 0 0 80%;
+        padding: 0 2%;
+    }
+}
+
+/* MÓVIL (hasta 768px) */
+@media (max-width: 768px) {
+
+    .travel-experts-section,
+    .how-were-different-section,
+    .travel-finder-section,
+    .testimonials-section,
+    .why-choose-us-section,
+    .cta-section {
+        padding: 60px 0;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    .hero-subtitle {
+        font-size: 1.1rem;
+        padding: 0 5px;
+    }
+    .hero-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .btn-explore,
+    .btn-browse {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+
+    .travel-experts-section .section-title {
+        font-size: 2rem;
+    }
+    .travel-experts-section .section-body {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
+
+    .how-were-different-section .section-header {
+        font-size: 1.5rem;
+    }
+    .difference-cards-col {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .card-item {
+        flex: 0 0 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    .card-image {
+        height: 250px;
+    }
+
+    /* --- CORRECCIÓN SECCIÓN 3: POPULAR TRIPS (Móvil) --- */
+    .popular-trips-section {
+        /* Reducción del padding superior para acercar la sección anterior y el título */
+        padding: 80px 0 50px 0; 
+    }
+    .popular-trips-inner {
+        /* Eliminación total del espacio Flexbox entre el sidebar (título) y el carrusel */
+        gap: 0px; 
+    }
+    .trips-sidebar {
+        padding: 0 97px;
+        /* Quitamos el padding inferior que podría separarlo de las cards */
+        padding-bottom: 0; 
+    }
+    .sidebar-title {
+        font-size: 2.5rem;
+        /* Aumento del espacio entre el título y el subtítulo */
+        margin-bottom: 30px; 
+    }
+    .sidebar-subtitle {
+        /* ¡CLAVE! Mantenemos el margen casi nulo para que se pegue a las cards */
+        margin-bottom: 5px; 
+    }
+    
+    .carousel-content {
+        /* ¡CLAVE! Eliminamos completamente el padding superior para máxima compresión */
+        padding: 0 20px 20px 20px; 
+        gap: 15px;
+    }
+    .trip-card {
+        flex: 0 0 280px;
+        max-width: 280px;
+        height: 450px;
+    }
+    /* Fin de la corrección para la Sección 3 en Móvil */
+
+    .finder-main-title {
+        font-size: 2.5rem;
+    }
+    .finder-filters {
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 0 10px;
+    }
+    .finder-content-grid {
+        padding: 0 20px;
+    }
+    .finder-content-grid.grid-4-cols,
+    .finder-content-grid.grid-6-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-item {
+        height: 250px;
+    }
+    .item-label {
+        font-size: 1rem;
+    }
+
+    .testimonials-main-title {
+        font-size: 1.8rem;
+    }
+    .testimonial-card {
+        flex: 0 0 100%;
+        padding: 0 1%;
+    }
+    .testimonial-image-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    .quote-text {
+        font-size: 1rem;
+        max-width: 90%;
+    }
+
+    .why-main-title {
+        font-size: 1.6rem;
+    }
+    .value-icon-grid {
+        flex-direction: column;
+        align-items: center;
+        padding: 0 20px;
+    }
+    .value-item {
+        flex: 0 0 100%;
+        max-width: 300px;
+        border-bottom: 1px dashed #eee;
+    }
+    .value-label {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--color-text-dark);
+    }
+
+    .cta-title {
+        font-size: 2rem;
+    }
 }

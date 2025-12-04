@@ -69,3 +69,69 @@
     /* Lo ocultamos en escritorio si queremos solo dos elementos */
     /* display: none; */ 
 }
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Tablets y dispositivos más grandes (>= 768px) */
+/* ---------------------------------------------------- */
+@media (max-width: 1024px) {
+    .footer-content {
+        padding: 0 30px; /* Reducir el padding lateral */
+    }
+
+    /* Ajuste en el grupo de información para que haya más espacio */
+    .footer-info-group {
+        gap: 15px;
+    }
+
+    .footer-brand {
+        font-size: 0.95rem;
+    }
+
+    .footer-credits, .footer-motto {
+        font-size: 0.75rem;
+    }
+}
+
+
+/* ---------------------------------------------------- */
+/* MEDIA QUERY: Smartphones (<= 767px) */
+/* ---------------------------------------------------- */
+@media (max-width: 767px) {
+    .simple-footer {
+        padding: 20px 0; /* Padding vertical más pequeño */
+    }
+
+    .footer-content {
+        /* CLAVE: Cambiar a apilamiento vertical */
+        flex-direction: column;
+        text-align: center; /* Centrar todo el texto */
+        gap: 15px; /* Espacio entre los elementos apilados */
+        padding: 0 20px;
+    }
+
+    /* 1. Nombre de la Marca (Ahora en la parte superior) */
+    .footer-brand {
+        order: -1; /* Mover la marca al inicio (arriba) */
+        margin-bottom: 5px; /* Pequeño espacio debajo de la marca */
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+    }
+
+    /* 2. Créditos y Lema (Ahora agrupados y centrados) */
+    .footer-info-group {
+        /* Deshacer el flex horizontal en el grupo, forzar apilamiento */
+        flex-direction: column; 
+        gap: 5px; /* Menor espacio entre Créditos y Lema */
+        order: 1; 
+    }
+
+    .footer-credits, .footer-motto {
+        font-size: 0.75rem; /* Asegurar que el texto sea legible */
+        line-height: 1.3;
+    }
+
+    /* Opcional: Ocultar el lema para ahorrar espacio en móviles si es necesario */
+    .footer-motto {
+        display: none; 
+    }
+}
