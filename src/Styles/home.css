@@ -1092,14 +1092,14 @@
     /* --- CORRECCIÓN SECCIÓN 3: POPULAR TRIPS (Móvil) --- */
     .popular-trips-section {
         /* Reducción del padding superior para acercar la sección anterior y el título */
-        padding: 80px 0 50px 0; 
+        padding: 170px 0 50px 0; 
     }
     .popular-trips-inner {
         /* Eliminación total del espacio Flexbox entre el sidebar (título) y el carrusel */
         gap: 0px; 
     }
     .trips-sidebar {
-        padding: 0 97px;
+        padding: 0 10px;
         /* Quitamos el padding inferior que podría separarlo de las cards */
         padding-bottom: 0; 
     }
