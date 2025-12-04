@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 const video1 = "https://res.cloudinary.com/duqi8oy4a/video/upload/v1764715475/adventure_a5uezc.mov";
 
 import "../Styles/home.css"; 
-import icon1 from "../assets/img/icon1.png"; // Satisfacción (Trofeo/Laurel)
-import icon2 from "../assets/img/icon2.png"; // Separar cupo (Ticket)
+import icon1 from "../assets/img/icon2.png"; // Satisfacción (Trofeo/Laurel)
+import icon2 from "../assets/img/icon1.png"; // Separar cupo (Ticket)
 import icon3 from "../assets/img/icon3.png"; // No fees (Mapa/Planeación)
 import icon4 from "../assets/img/icon4.png"; // WhatsApp (Teléfono/Soporte)
 import icon5 from "../assets/img/icon5.png"; // Guías Expertos (Sombrero/Persona)
