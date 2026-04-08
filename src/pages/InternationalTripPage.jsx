@@ -10,12 +10,12 @@ import LottiePreloader from '../components/LottiePreloader.jsx';
 
 // VERIFICA ESTA URL: Debe ser el 'exec' de tu última implementación
 const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyD_LV9XzHTtluFMsC4jyu8ZHdo-hIyqWyujQEeSdJ_AhziBhHpSq3rFoUhj0eMvPohpA/exec'; 
-// *******************************************************************
 
 
-// Componente TravelCard (con lógica de botones duales/simples mejorada)
+// Componente TravelCard (Con botón colapsable para Incluye)
 const TravelCard = ({ viaje }) => {
-    // FUNCIÓN DE FORMATO DE MONEDA (sin cambios)
+    const [showInclusions, setShowInclusions] = useState(false); // Estado para el colapsable
+
     const formatCurrency = (value) => { 
         return new Intl.NumberFormat('es-CO', { 
             style: 'currency', 
@@ -24,18 +24,17 @@ const TravelCard = ({ viaje }) => {
         }).format(value);
     };
 
-    // 1. Enlace de WhatsApp (siempre necesario)
+    // Enlace de WhatsApp
     const whatsappText = viaje.texto_whatsapp || viaje.texto_especifico || `Viaje a ${viaje.destino_especifico}`;
     const whatsappLink = `https://wa.me/3023042213?text=Hola,%20vi%20tu%20web%20y%20estoy%20interesado%20en%20el%20viaje%20a%20${encodeURIComponent(whatsappText)}`;
     
-    // 2. Lógica para el Enlace de Detalle Adicional
+    // Lógica para el Enlace de Detalle Adicional
     const hasDetailLink = viaje.detalle_adicional_url && viaje.detalle_adicional_url.startsWith('http');
     const detailLink = hasDetailLink ? viaje.detalle_adicional_url : '#'; 
 
     const date1 = new Date(viaje.fecha_inicio);
     const date2 = new Date(viaje.fecha_fin);
-    const diffTime = Math.abs(date2 - date1);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffDays = Math.ceil(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
     const nights = diffDays > 0 ? diffDays : 1; 
 
     const inclusionsList = viaje.incluye ? viaje.incluye.split(',').map(item => item.trim()) : [];
@@ -57,7 +56,6 @@ const TravelCard = ({ viaje }) => {
 
             <div className="travel-card-content-base-unique">
                 <h3 className="travel-card-title-unique">{viaje.destino_especifico}</h3>
-                {/* ✅ CORRECCIÓN 1: Aplicamos la clase de restricción de texto */}
                 <p className="travel-card-subtitle-unique description-text-unique">{viaje.frase_motivacional}</p>
             </div>
 
@@ -65,23 +63,38 @@ const TravelCard = ({ viaje }) => {
                 <div className="travel-hover-details-wrapper-unique">
                     <div className="travel-detail-row-unique">
                         <span className="travel-detail-label-unique">🗓️ Fechas:</span>
-                        <span className="travel-detail-value-unique">{new Date(viaje.fecha_inicio).toLocaleDateString('es-CO')} - {new Date(viaje.fecha_fin).toLocaleDateString('es-CO')}</span>
+                        <span className="travel-detail-value-unique">
+                            {new Date(viaje.fecha_inicio).toLocaleDateString('es-CO')} - {new Date(viaje.fecha_fin).toLocaleDateString('es-CO')}
+                        </span>
                     </div>
                     <div className="travel-detail-row-unique">
                         <span className="travel-detail-label-unique">🏷️ Tipo:</span>
                         <span className="travel-detail-value-unique">{viaje.tipo_viaje}</span>
                     </div>
 
-                    <h4 className="travel-inclusions-title-unique">INCLUYE:</h4>
-                    <ul className="travel-inclusions-list-unique">
-                        {inclusionsList.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
+                    {/* SECCIÓN COLAPSABLE DE INCLUYE */}
+                    <div className="travel-inclusions-container-unique">
+                        <button 
+                            className="travel-inclusions-toggle-btn-unique"
+                            onClick={() => setShowInclusions(!showInclusions)}
+                        >
+                            <span>{showInclusions ? 'OCULTAR DETALLES' : 'VER QUÉ INCLUYE'}</span>
+                            <i className={`fa-solid fa-chevron-${showInclusions ? 'up' : 'down'}`}></i>
+                        </button>
+
+                        <div className={`travel-inclusions-collapse-unique ${showInclusions ? 'is-open' : ''}`}>
+                            <ul className="travel-inclusions-list-unique">
+                                {inclusionsList.map((item, index) => (
+                                    <li key={index}>
+                                        <i className="fa-solid fa-check-circle"></i> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* ✅ CORRECCIÓN 2: Usamos 'footer-two-buttons-unique' o 'footer-one-button-unique' */}
             <div className={`travel-card-footer-unique ${hasDetailLink ? 'footer-two-buttons-unique' : 'footer-one-button-unique'}`}>
                 <span className="travel-price-footer-unique">
                     Desde: 
@@ -89,7 +102,6 @@ const TravelCard = ({ viaje }) => {
                     <span className="travel-price-currency-unique">{viaje.moneda}</span>
                 </span>
                 
-                {/* 🎯 El contenedor de botones es clave para el flexbox */}
                 <div className="travel-buttons-group-unique"> 
                     {hasDetailLink && (
                         <a 
@@ -125,13 +137,11 @@ export const InternationalTripPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Lógica de Fetch (sin cambios en la funcionalidad)
     useEffect(() => {
         const fetchTrips = async () => {
             setLoading(true);
             setError(null);
             try {
-                // 1. Obtener todos los viajes de la API de GAS
                 const response = await fetch(GAS_API_URL);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -139,16 +149,14 @@ export const InternationalTripPage = () => {
                 
                 let data = await response.json();
                 if (data.error) {
-                    throw new Error(data.message || "Error desconocido de la API de Apps Script.");
+                    throw new Error(data.message || "Error desconocido de la API.");
                 }
 
-                // 2. Filtrar solo los viajes del país dinámico
                 const targetCountry = displayCountry.toUpperCase();
                 const filteredTrips = data.filter(
                     (trip) => trip.pais && String(trip.pais).toUpperCase() === targetCountry
                 );
 
-                // 3. Ordenar y Agrupar los viajes por MES_INICIO
                 filteredTrips.sort((a, b) => {
                     const monthOrder = { 
                         ENERO: 1, FEBRERO: 2, MARZO: 3, ABRIL: 4, MAYO: 5, JUNIO: 6,
@@ -180,12 +188,7 @@ export const InternationalTripPage = () => {
         fetchTrips(); 
     }, [country, displayCountry]); 
 
-    // *****************************************************************
-    // 2. REEMPLAZO CLAVE: Usar el LottiePreloader en lugar del div simple
-    // *****************************************************************
-    if (loading) return <LottiePreloader />; // Muestra la animación mientras loading es true
-    // *****************************************************************
-    
+    if (loading) return <LottiePreloader />; 
     if (error) return <div className="international-error-page">Error: {error}</div>;
 
     const months = Object.keys(allTrips);

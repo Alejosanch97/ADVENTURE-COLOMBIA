@@ -467,11 +467,198 @@
     box-shadow: 0 6px 12px rgba(217, 83, 79, 0.6);
 }
 
+/* ================================================================== */
+/* --- NUEVOS ESTILOS PARA EL COLAPSABLE DE "INCLUYE" --- */
+/* ================================================================== */
+
+/* Contenedor principal del botón y la lista */
+.travel-inclusions-container-colombia {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* El botón que dispara el despliegue */
+.travel-inclusions-toggle-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 100%;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.travel-inclusions-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffcc00; /* Color amarillo de tu marca */
+    color: #ffcc00;
+}
+
+/* Contenedor animado (El secreto del despliegue suave) */
+.travel-inclusions-collapse {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 8px 8px;
+}
+
+/* Clase que se activa mediante JS (el is-open que pusimos en el JSX) */
+.travel-inclusions-collapse.is-open {
+    max-height: 800px; /* Suficiente para listas largas */
+    margin-top: 2px;
+    padding: 15px 10px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+}
+
+/* Estilo de la lista interna */
+.travel-inclusions-list-colombia {
+    list-style: none !important; /* Quitamos el estilo por defecto */
+    padding-left: 5px !important;
+    margin: 0;
+}
+
+.travel-inclusions-list-colombia li {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.3;
+    text-shadow: none; /* Limpiamos sombras para que se vea más moderno */
+}
+
+/* El icono de check */
+.travel-inclusions-list-colombia li i {
+    color: #ffcc00; /* Amarillo */
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+/* Ajuste para el scroll interno si la lista es muy larga */
+.travel-inclusions-collapse::-webkit-scrollbar {
+    width: 4px;
+}
+.travel-inclusions-collapse::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+/* Eliminar el título viejo de "INCLUYE" ya que el botón hace esa función */
+.travel-inclusions-title-colombia {
+    display: none;
+}
+
+
 /*
   =======================================
   RESPONSIVE DESIGN: TABLETS Y CELULARES
   =======================================
 */
+
+/* ================================================================== */
+/* --- ESTILOS PARA EL BOTÓN DESPLEGABLE (INCLUYE) - UNIQUE --- */
+/* ================================================================== */
+
+/* Contenedor principal dentro del hover */
+.travel-inclusions-container-unique {
+    margin-top: 12px;
+    width: 100%;
+}
+
+/* El botón de acción */
+.travel-inclusions-toggle-btn-unique {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: 100%;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.travel-inclusions-toggle-btn-unique:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffcc00; /* Color distintivo de Tribu 2600 */
+    color: #ffcc00;
+}
+
+/* Contenedor del colapso (Efecto persiana) */
+.travel-inclusions-collapse-unique {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; /* Animación de apertura */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 5px 5px;
+}
+
+/* Cuando el botón está activo (showInclusions === true) */
+.travel-inclusions-collapse-unique.is-open {
+    max-height: 400px; /* Ajusta según el largo de tus listas */
+    margin-top: 4px;
+    padding: 12px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+}
+
+/* Estilo de los items de la lista */
+.travel-inclusions-list-unique {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.travel-inclusions-list-unique li {
+    font-size: 0.82rem;
+    margin-bottom: 7px;
+    color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+/* Icono del check */
+.travel-inclusions-list-unique li i {
+    color: #ffcc00;
+    font-size: 0.75rem;
+    margin-top: 2px;
+}
+
+/* Ocultar el título antiguo de "INCLUYE" si existía para evitar duplicidad visual */
+.travel-inclusions-title-unique {
+    display: none;
+}
+
+/* Scrollbar minimalista para listas muy largas */
+.travel-inclusions-collapse-unique::-webkit-scrollbar {
+    width: 3px;
+}
+.travel-inclusions-collapse-unique::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
 
 /* ---------------------------------------------------- */
 /* MEDIA QUERY: Tablets y dispositivos grandes (max-width: 1024px) */

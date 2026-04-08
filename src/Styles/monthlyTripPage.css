@@ -477,6 +477,99 @@
   =======================================
 */
 
+/* ================================================================== */
+/* --- ESTILOS PARA EL BOTÓN DESPLEGABLE (INCLUYE) - UNIQUE --- */
+/* ================================================================== */
+
+/* Contenedor principal dentro del hover */
+.travel-inclusions-container-unique {
+    margin-top: 12px;
+    width: 100%;
+}
+
+/* El botón de acción */
+.travel-inclusions-toggle-btn-unique {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    width: 100%;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.travel-inclusions-toggle-btn-unique:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #ffcc00; /* Color distintivo de Tribu 2600 */
+    color: #ffcc00;
+}
+
+/* Contenedor del colapso (Efecto persiana) */
+.travel-inclusions-collapse-unique {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out; /* Animación de apertura */
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 5px 5px;
+}
+
+/* Cuando el botón está activo (showInclusions === true) */
+.travel-inclusions-collapse-unique.is-open {
+    max-height: 400px; /* Ajusta según el largo de tus listas */
+    margin-top: 4px;
+    padding: 12px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+}
+
+/* Estilo de los items de la lista */
+.travel-inclusions-list-unique {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.travel-inclusions-list-unique li {
+    font-size: 0.82rem;
+    margin-bottom: 7px;
+    color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.2;
+    text-align: left;
+}
+
+/* Icono del check */
+.travel-inclusions-list-unique li i {
+    color: #ffcc00;
+    font-size: 0.75rem;
+    margin-top: 2px;
+}
+
+/* Ocultar el título antiguo de "INCLUYE" si existía para evitar duplicidad visual */
+.travel-inclusions-title-unique {
+    display: none;
+}
+
+/* Scrollbar minimalista para listas muy largas */
+.travel-inclusions-collapse-unique::-webkit-scrollbar {
+    width: 3px;
+}
+.travel-inclusions-collapse-unique::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
 /* ---------------------------------------------------- */
 /* MEDIA QUERY: Tablets y dispositivos grandes (max-width: 1024px) */
 /* ---------------------------------------------------- */

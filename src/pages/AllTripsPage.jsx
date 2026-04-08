@@ -11,9 +11,10 @@ import LottiePreloader from '../components/LottiePreloader.jsx';
 const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyD_LV9XzHTtluFMsC4jyu8ZHdo-hIyqWyujQEeSdJ_AhziBhHpSq3rFoUhj0eMvPohpA/exec'; 
 // *******************************************************************
 
-// ✅ Componente TravelCard (con clases -unique y lógica de botones duales/simples)
+// ✅ Componente TravelCard (con clases -unique y lógica de botón colapsable para Incluye)
 const TravelCard = ({ viaje }) => {
-    // FUNCIÓN DE FORMATO DE MONEDA (sin cambios)
+    const [showInclusions, setShowInclusions] = useState(false); // Estado para el colapsable
+
     const formatCurrency = (value) => { 
         const currencyCode = viaje.moneda || 'COP';
         return new Intl.NumberFormat('es-CO', { 
@@ -23,7 +24,7 @@ const TravelCard = ({ viaje }) => {
         }).format(value);
     };
 
-    // Lógica para el Enlace de Detalle Adicional
+    // Lógica de Enlaces
     const whatsappText = viaje.texto_whatsapp || `Viaje a ${viaje.destino_especifico}`;
     const whatsappLink = `https://wa.me/3023042213?text=Hola,%20vi%20tu%20web%20y%20estoy%20interesado%20en%20el%20viaje%20a%20${encodeURIComponent(whatsappText)}`;
     
@@ -42,9 +43,7 @@ const TravelCard = ({ viaje }) => {
     const inclusionsList = viaje.incluye ? viaje.incluye.split(',').map(item => item.trim()) : [];
 
     return (
-        // ✅ CLASE BASE: travel-card-unique
         <div className="travel-card-unique"> 
-            {/* ✅ Clases de encabezado corregidas */}
             <div className="travel-card-header-unique">
                 <span className="travel-nights-label-unique">{nights} NOCHES</span>
                 <span className="travel-cups-label-unique">
@@ -58,34 +57,47 @@ const TravelCard = ({ viaje }) => {
                 className="travel-card-image-unique" 
             />
 
-            {/* ✅ Clases de contenido corregidas y descripción restringida */}
             <div className="travel-card-content-base-unique">
                 <h3 className="travel-card-title-unique">{viaje.destino_especifico} ({viaje.pais})</h3>
                 <p className="travel-card-subtitle-unique description-text-unique">{viaje.frase_motivacional}</p>
             </div>
 
-            {/* ✅ Clases de hover corregidas */}
             <div className="travel-card-hover-info-unique">
                 <div className="travel-hover-details-wrapper-unique">
                     <div className="travel-detail-row-unique">
                         <span className="travel-detail-label-unique">🗓️ Fechas:</span>
-                        <span className="travel-detail-value-unique">{new Date(viaje.fecha_inicio).toLocaleDateString('es-CO')} - {new Date(viaje.fecha_fin).toLocaleDateString('es-CO')}</span>
+                        <span className="travel-detail-value-unique">
+                            {new Date(viaje.fecha_inicio).toLocaleDateString('es-CO')} - {new Date(viaje.fecha_fin).toLocaleDateString('es-CO')}
+                        </span>
                     </div>
                     <div className="travel-detail-row-unique">
                         <span className="travel-detail-label-unique">🏷️ Tipo:</span>
                         <span className="travel-detail-value-unique">{viaje.tipo_viaje}</span>
                     </div>
 
-                    <h4 className="travel-inclusions-title-unique">INCLUYE:</h4>
-                    <ul className="travel-inclusions-list-unique">
-                        {inclusionsList.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
+                    {/* SECCIÓN COLAPSABLE DE INCLUYE (Mejorada) */}
+                    <div className="travel-inclusions-container-unique">
+                        <button 
+                            className="travel-inclusions-toggle-btn-unique"
+                            onClick={() => setShowInclusions(!showInclusions)}
+                        >
+                            <span>{showInclusions ? 'OCULTAR DETALLES' : 'VER QUÉ INCLUYE'}</span>
+                            <i className={`fa-solid fa-chevron-${showInclusions ? 'up' : 'down'}`}></i>
+                        </button>
+
+                        <div className={`travel-inclusions-collapse-unique ${showInclusions ? 'is-open' : ''}`}>
+                            <ul className="travel-inclusions-list-unique">
+                                {inclusionsList.map((item, index) => (
+                                    <li key={index}>
+                                        <i className="fa-solid fa-check-circle"></i> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* ✅ Lógica de Footer Corregida (Doble o Simple) */}
             <div className={`travel-card-footer-unique ${hasDetailLink ? 'footer-two-buttons-unique' : 'footer-one-button-unique'}`}>
                 <span className="travel-price-footer-unique">
                     Desde: 
@@ -126,7 +138,6 @@ export const AllTripsPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // ... (Lógica de Fetch sin cambios) ...
         const fetchTrips = async () => {
             try {
                 const response = await fetch(GAS_API_URL);
@@ -136,13 +147,11 @@ export const AllTripsPage = () => {
                 
                 let data = await response.json();
                 if (data.error) {
-                    throw new Error(data.message || "Error desconocido de la API de Apps Script.");
+                    throw new Error(data.message || "Error desconocido de la API.");
                 }
 
-                // **FILTRADO ELIMINADO: USAR TODOS LOS DATOS**
                 const tripsData = data; 
 
-                // Ordenar por Mes de Inicio 
                 tripsData.sort((a, b) => {
                     const monthOrder = { 
                         ENERO: 1, FEBRERO: 2, MARZO: 3, ABRIL: 4, MAYO: 5, JUNIO: 6,
@@ -153,7 +162,6 @@ export const AllTripsPage = () => {
                     return (monthOrder[monthA] || 0) - (monthOrder[monthB] || 0);
                 });
 
-                // Agrupar por Mes de Inicio
                 const groupedTrips = tripsData.reduce((acc, trip) => {
                     const month = trip.mes_inicio ? String(trip.mes_inicio).toUpperCase() : 'SIN MES';
                     if (!acc[month]) {
@@ -175,17 +183,13 @@ export const AllTripsPage = () => {
         fetchTrips(); 
     }, []); 
 
-    // Usar el LottiePreloader
     if (loading) return <LottiePreloader />; 
-    
     if (error) return <div className="colombia-error-page">Error: {error}</div>;
 
     const months = Object.keys(allTrips);
 
     return (
-        // ✅ Page Wrapper para el Sticky Footer
         <div className="colombia-page-wrapper">
-            {/* Encabezado */}
             <header className="page-hero-colombia-unique"> 
                 <div className="colombia-container-unique"> 
                     <p className="colombia-breadcrumb-unique">
@@ -196,11 +200,9 @@ export const AllTripsPage = () => {
                 </div>
             </header>
 
-            {/* ✅ Sección de Contenido con flex-grow: 1 */}
             <div className="colombia-trips-content-section-unique">
                 <div className="colombia-container-unique">
                     {months.length === 0 ? (
-                        // ✅ Mensaje de error con clase única
                         <h2 className="colombia-no-trips-message-unique">
                             ¡Qué lástima! No tenemos viajes con cupos disponibles por ahora.
                         </h2>

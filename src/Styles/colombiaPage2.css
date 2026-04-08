@@ -499,11 +499,107 @@
     box-shadow: 0 6px 12px rgba(217, 83, 79, 0.6);
 }
 
+
+
 /*
   =======================================
   RESPONSIVE DESIGN: TABLETS Y CELULARES
   =======================================
 */
+
+/* ================================================================== */
+/* --- ESTILOS PARA EL BOTÓN DESPLEGABLE (INCLUYE) - UNIQUE --- */
+/* ================================================================== */
+
+/* Contenedor del botón y la lista */
+.travel-inclusions-container-unique {
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* El botón que dispara el despliegue */
+.travel-inclusions-toggle-btn-unique {
+    background: rgba(255, 255, 255, 0.08); /* Fondo sutil */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 100%;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    text-transform: uppercase;
+    outline: none;
+}
+
+.travel-inclusions-toggle-btn-unique:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffcc00; /* Color amarillo de tu marca */
+    color: #ffcc00;
+}
+
+/* Contenedor colapsable (Animación de altura) */
+.travel-inclusions-collapse-unique {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 8px 8px;
+}
+
+/* Clase que se activa cuando showInclusions es true */
+.travel-inclusions-collapse-unique.is-open {
+    max-height: 500px; /* Altura máxima suficiente para la lista */
+    margin-top: 2px;
+    padding: 15px 12px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: none;
+}
+
+/* Estilo de la lista interna */
+.travel-inclusions-list-unique {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.travel-inclusions-list-unique li {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.3;
+    text-align: left;
+}
+
+/* Icono de Check (FontAwesome) */
+.travel-inclusions-list-unique li i {
+    color: #ffcc00; /* Amarillo */
+    font-size: 0.8rem;
+    margin-top: 3px;
+}
+
+/* Ocultamos el título viejo si aún existe en el CSS para no duplicar */
+.travel-inclusions-title-unique {
+    display: none;
+}
+
+/* Personalización del scroll interno si la lista es muy larga */
+.travel-inclusions-collapse-unique::-webkit-scrollbar {
+    width: 4px;
+}
+.travel-inclusions-collapse-unique::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
 
 /* ---------------------------------------------------- */
 /* MEDIA QUERY: Tablets y dispositivos grandes (max-width: 1024px) */
