@@ -37,7 +37,7 @@ const destinations = [
     { name: 'ASIA', image: "https://i.pinimg.com/1200x/aa/df/ba/aadfba80c32936d84af2d27769dc73ab.jpg" },
 ];
 const months = [
-    { name: 'ENERO', image: "https://carnavaldepasto.org/wp-content/uploads/2025/09/Banner-2026-Principal-1.png"},
+    { name: 'ENERO', image: "https://i.pinimg.com/1200x/59/80/a6/5980a68f9ee2f1f7ebf5167328755ebe.jpg"},
     { name: 'FEBRERO', image: "https://i.pinimg.com/1200x/de/e0/6b/dee06b291d70f5459e965e44efacf0be.jpg" },
     { name: 'MARZO', image: "https://i.pinimg.com/1200x/68/af/54/68af548a1630be18b563e648a84e6ffe.jpg" },
     { name: 'ABRIL', image: "https://i.pinimg.com/736x/74/fb/6d/74fb6df7ee3236bbc06c7651d0608489.jpg" },

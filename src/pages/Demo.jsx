@@ -1,4 +1,3 @@
-// Demo.jsx (CÓDIGO CORREGIDO Y CON FUNCIONALIDAD DE CLIC Y SCROLL CONTROLADO)
 
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useRef } from 'react'; // 👈 IMPORTAR useRef
@@ -112,7 +111,7 @@ export const Demo = () => {
             
             {/* Indicador Central Fijo */}
             <div className="fixed-step-indicator">
-                <h1 className="how-it-works-title">HOW IT ALL WORKS</h1> 
+                <h1 className="how-it-works-title">COMO FUNCIONA ADVENTURE</h1> 
                 
                 <div className="step-circle-wrapper">
                     <div className="step-number-circle">
@@ -155,7 +154,7 @@ export const Demo = () => {
                                 <div className={`step-half step-text-side ${isEven ? 'order-2' : 'order-1'}`}>
                                     
                                     <div className="step-text-details">
-                                        <h3 className="step-small-title">STEP {step.num}</h3>
+                                        <h3 className="step-small-title">PASO {step.num}</h3>
                                         <p className="step-description">{step.desc}</p>
                                         <p className="step-title-alt">{step.title}</p>
                                     </div>

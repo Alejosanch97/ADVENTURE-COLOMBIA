@@ -20,6 +20,7 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+    min-height: 100dvh;
     
     /* ************************************************* */
     /* MODIFICACIÓN CLAVE: AGREGAR IMAGEN DE FONDO con URL de Cloudinary */
@@ -336,5 +337,67 @@
     /* Barra de Progreso */
     .lottie-preloader-loading-bar-placeholder {
         width: 90%; /* Ocupa casi todo el ancho disponible */
+    }
+}
+
+/* ==================================================== */
+/* 2. MEDIA QUERY: Smartphones (REVISADO Y FORZADO) */
+/* ==================================================== */
+@media (max-width: 767px) {
+    
+    /* Contenido Central (Asegurar que el contenido se vea en el centro de la pantalla) */
+    .lottie-preloader-content-wrapper {
+        padding: 0 15px;
+    }
+    
+    /* --- CORNER MARKERS (FORZADO RESPONSIVE PREMIUM) --- */
+    .lottie-preloader-corner-marker {
+        /* Aumentamos tamaño de 30px a 35px para que la 'L' sea más visible */
+        width: 35px !important; 
+        height: 35px !important; 
+        /* Aumentamos grosor de 2px a 3px para un look premium y visible en Retina */
+        border-width: 3px !important; 
+    }
+
+    /* Mantenemos márgenes cómodos para evitar el notch o la curva del celular */
+    .lottie-preloader-corner-marker.top-left,
+    .lottie-preloader-corner-marker.top-right {
+        top: 20px !important;
+    }
+    .lottie-preloader-corner-marker.bottom-left,
+    .lottie-preloader-corner-marker.bottom-right {
+        bottom: 20px !important;
+    }
+    .lottie-preloader-corner-marker.top-left,
+    .lottie-preloader-corner-marker.bottom-left {
+        left: 20px !important;
+    }
+    .lottie-preloader-corner-marker.top-right,
+    .lottie-preloader-corner-marker.bottom-right {
+        right: 20px !important;
+    }
+    
+    /* --- Texto Dinámico --- */
+    /* ... resto de tu código para texto, lottie y barra que ya funciona ... */
+    .lottie-preloader-dynamic-text-group {
+        margin-bottom: 30px; 
+    }
+    .lottie-preloader-dynamic-word {
+        font-size: 9vw;
+        line-height: 1.1;
+    }
+    .lottie-preloader-dynamic-word.word-3 {
+        font-size: 11vw;
+    }
+    .lottie-preloader-animation {
+        width: 200px; 
+        height: 200px; 
+        margin-bottom: 40px; 
+    }
+    .lottie-preloader-loading-message-dynamic {
+        font-size: 1rem; 
+    }
+    .lottie-preloader-loading-bar-placeholder {
+        width: 90%;
     }
 }

@@ -1186,3 +1186,107 @@
         font-size: 2rem;
     }
 }
+
+/* ================================================= */
+/* NAVBAR OVERLAY DE ALTA GAMA - REVISADO */
+/* ================================================= */
+
+@media (max-width: 1024px) {
+    .navbar-links {
+        display: none; 
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        /* Fondo translúcido premium */
+        background: rgba(10, 10, 10, 0.3) !important; 
+        backdrop-filter: blur(15px); /* Desenfoque de fondo */
+        -webkit-backdrop-filter: blur(15px);
+        z-index: 999;
+        padding: 0;
+        animation: fadeInOverlay 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+
+    .navbar-links .nav-item {
+        width: auto;
+        padding: 12px 0;
+        border: none;
+        margin: 15px 0;
+        opacity: 0; /* Para la animación de entrada */
+        animation: slideInUp 0.5s ease forwards;
+    }
+
+    /* Retraso en la aparición de cada link para efecto de lujo */
+    .navbar-links .nav-item:nth-child(1) { animation-delay: 0.1s; }
+    .navbar-links .nav-item:nth-child(2) { animation-delay: 0.2s; }
+    .navbar-links .nav-item:nth-child(3) { animation-delay: 0.3s; }
+    .navbar-links .nav-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .navbar-links .nav-item a {
+        font-family: 'Georgia', serif !important;
+        font-size: 1.8rem !important;
+        font-weight: 300;
+        text-transform: uppercase;
+        letter-spacing: 6px !important; /* Espaciado generoso */
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: all 0.4s ease;
+    }
+
+    /* Efecto Hover Amarillo Colombia */
+    .navbar-links .nav-item a:hover {
+        color: #FFC72C !important;
+        letter-spacing: 8px !important;
+        padding-left: 10px;
+    }
+
+    /* Botón de Contacto Minimalista */
+    .nav-button-mobile {
+        display: flex !important;
+        margin-top: 50px;
+        opacity: 0;
+        animation: fadeInOverlay 0.5s ease forwards;
+        animation-delay: 0.6s;
+    }
+
+    .nav-button-mobile .cta-btn {
+        background: transparent !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        color: white !important;
+        padding: 15px 50px;
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+        border-radius: 0; /* Estética arquitectónica */
+        transition: all 0.3s ease;
+    }
+
+    .nav-button-mobile .cta-btn:hover {
+        background: white !important;
+        color: black !important;
+        border-color: white !important;
+    }
+
+    .menu-toggle {
+        color: white !important;
+        z-index: 1000;
+    }
+}
+
+/* Animaciones de Entrada */
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
