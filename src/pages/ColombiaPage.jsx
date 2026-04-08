@@ -8,16 +8,13 @@ import { Link } from 'react-router-dom';
 import LottiePreloader from '../components/LottiePreloader.jsx';
 // *******************************************************************
 
-// *******************************************************************
 const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbyD_LV9XzHTtluFMsC4jyu8ZHdo-hIyqWyujQEeSdJ_AhziBhHpSq3rFoUhj0eMvPohpA/exec'; 
-// *******************************************************************
 
-
-// Componente TravelCard (AHORA CON CLASES ÚNICAS Y LÓGICA DE DOBLE BOTÓN)
+// Componente TravelCard con Acordeón para "Incluye"
 const TravelCard = ({ viaje }) => {
-    
+    const [showInclusions, setShowInclusions] = useState(false); // Nuevo estado para el colapsable
+
     const formatCurrency = (value) => { 
-        // Usar la moneda del viaje si está disponible, si no, usa COP (asumiendo que es Colombia)
         const currencyCode = viaje.moneda || 'COP';
         return new Intl.NumberFormat('es-CO', { 
             style: 'currency', 
@@ -28,23 +25,20 @@ const TravelCard = ({ viaje }) => {
 
     // Lógica de Enlaces
     const whatsappText = viaje.texto_whatsapp || `Viaje a ${viaje.destino_especifico}`;
-    // NOTA: Asegúrate de reemplazar 'TUNUMERO_TELEFONO' con tu número real
     const whatsappLink = `https://wa.me/3023042213?text=Hola,%20vi%20tu%20web%20y%20estoy%20interesado%20en%20el%20viaje%20a%20${encodeURIComponent(whatsappText)}`;
     
-    // Lógica para el Enlace de Detalle Adicional
     const hasDetailLink = viaje.detalle_adicional_url && String(viaje.detalle_adicional_url).startsWith('http');
     const detailLink = hasDetailLink ? viaje.detalle_adicional_url : '#'; 
 
     const date1 = new Date(viaje.fecha_inicio);
     const date2 = new Date(viaje.fecha_fin);
-    const diffTime = Math.abs(date2 - date1);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffDays = Math.ceil(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));
     const nights = diffDays > 0 ? diffDays : 1; 
 
+    // Procesar lista de inclusiones
     const inclusionsList = viaje.incluye ? viaje.incluye.split(',').map(item => item.trim()) : [];
 
     return (
-        // CLASE ÚNICA
         <div className={`travel-card-colombia ${hasDetailLink ? 'travel-card-dual-footer-colombia' : ''}`}> 
             
             <div className="travel-card-header-colombia">
@@ -60,94 +54,88 @@ const TravelCard = ({ viaje }) => {
                 className="travel-card-image-colombia" 
             />
 
-            {/* CLASE ÚNICA */}
             <div className="travel-card-content-base-colombia">
                 <h3 className="travel-card-title-colombia">{viaje.destino_especifico}</h3>
                 <p className="travel-card-subtitle-colombia">{viaje.frase_motivacional}</p>
             </div>
 
-            {/* CLASE ÚNICA */}
             <div className="travel-card-hover-info-colombia">
-                {/* CLASE ÚNICA */}
                 <div className="travel-hover-details-wrapper-colombia">
-                    {/* CLASES ÚNICAS */}
                     <div className="travel-detail-row-colombia">
                         <span className="travel-detail-label-colombia">🗓️ Fechas:</span>
-                        <span className="travel-detail-value-colombia">{new Date(viaje.fecha_inicio).toLocaleDateString('es-CO')} - {new Date(viaje.fecha_fin).toLocaleDateString('es-CO')}</span>
+                        <span className="travel-detail-value-colombia">
+                            {new Date(viaje.fecha_inicio).toLocaleDateString('es-CO')} - {new Date(viaje.fecha_fin).toLocaleDateString('es-CO')}
+                        </span>
                     </div>
-                    {/* CLASES ÚNICAS */}
                     <div className="travel-detail-row-colombia">
                         <span className="travel-detail-label-colombia">🏷️ Tipo:</span>
                         <span className="travel-detail-value-colombia">{viaje.tipo_viaje}</span>
                     </div>
 
-                    <h4 className="travel-inclusions-title-colombia">INCLUYE:</h4>
-                    <ul className="travel-inclusions-list-colombia">
-                        {inclusionsList.map((item, index) => (
-                            <li key={index}>{item}</li>
-                        ))}
-                    </ul>
+                    {/* SECCIÓN COLAPSABLE DE INCLUYE */}
+                    <div className="travel-inclusions-container-colombia">
+                        <button 
+                            className="travel-inclusions-toggle-btn"
+                            onClick={() => setShowInclusions(!showInclusions)}
+                        >
+                            <span>{showInclusions ? 'OCULTAR DETALLES' : 'VER QUÉ INCLUYE'}</span>
+                            <i className={`fa-solid fa-chevron-${showInclusions ? 'up' : 'down'}`}></i>
+                        </button>
+
+                        <div className={`travel-inclusions-collapse ${showInclusions ? 'is-open' : ''}`}>
+                            <ul className="travel-inclusions-list-colombia">
+                                {inclusionsList.map((item, index) => (
+                                    <li key={index}>
+                                        <i className="fa-solid fa-check-circle"></i> {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* CLASE ÚNICA Y MODIFICADOR DE FOOTER */}
             <div className={`travel-card-footer-colombia ${hasDetailLink ? 'footer-two-buttons-colombia' : ''}`}>
-                
-                {/* CLASES ÚNICAS */}
                 <span className="travel-price-footer-colombia">
                     Desde: 
                     <span className="travel-price-value-colombia">{formatCurrency(viaje.valor_total)}</span>
                     <span className="travel-price-currency-colombia">{viaje.moneda || 'COP'}</span>
                 </span>
                 
-                {hasDetailLink ? (
-                    /* CLASE ÚNICA */
-                    <div className="travel-buttons-group-colombia"> 
+                <div className="travel-buttons-group-colombia"> 
+                    {hasDetailLink && (
                         <a 
                             href={detailLink} 
                             target="_blank" 
                             rel="noopener noreferrer" 
                             className="travel-explore-btn-colombia btn-details-colombia"
                         >
-                            VER DETALLES
+                            VER PDF
                         </a>
+                    )}
 
-                        <a 
-                            href={whatsappLink} 
-                            target="_blank" 
-                            rel="noopener noreferrer" 
-                            className="travel-explore-btn-colombia btn-whatsapp-colombia"
-                        >
-                            EXPLORAR VIAJE
-                        </a>
-                    </div>
-                ) : (
                     <a 
                         href={whatsappLink} 
                         target="_blank" 
                         rel="noopener noreferrer" 
                         className="travel-explore-btn-colombia btn-whatsapp-colombia"
                     >
-                        EXPLORAR VIAJE
+                        LO QUIERO
                     </a>
-                )}
+                </div>
             </div>
         </div>
     );
 };
 
-
 export const ColombiaPage = () => {
-// ... (Lógica de estado y fetch sin cambios)
     const [allTrips, setAllTrips] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Lógica de fetch
         const fetchTrips = async () => {
             try {
-                // ... lógica de fetch de la API de GAS
                 const response = await fetch(GAS_API_URL);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -155,7 +143,7 @@ export const ColombiaPage = () => {
                 
                 let data = await response.json();
                 if (data.error) {
-                    throw new Error(data.message || "Error desconocido de la API de Apps Script.");
+                    throw new Error(data.message || "Error desconocido de la API.");
                 }
 
                 const colombiaTrips = data.filter(
@@ -183,8 +171,7 @@ export const ColombiaPage = () => {
 
                 setAllTrips(groupedTrips);
             } catch (err) {
-                setError("Error al cargar los datos de viajes: " + err.message);
-                console.error("Fetch Error:", err);
+                setError("Error al cargar los datos: " + err.message);
             } finally {
                 setLoading(false);
             }
@@ -194,7 +181,6 @@ export const ColombiaPage = () => {
     }, []); 
 
     if (loading) return <LottiePreloader />; 
-    
     if (error) return <div className="colombia-error-page">Error: {error}</div>;
 
     const months = Object.keys(allTrips);
@@ -213,7 +199,7 @@ export const ColombiaPage = () => {
             <div className="colombia-trips-content-section-unique">
                 <div className="colombia-container-unique">
                     {months.length === 0 ? (
-                        <h2 className="colombia-no-trips-message-unique">¡Qué lástima! No tenemos viajes con cupos disponibles por ahora.</h2>
+                        <h2 className="colombia-no-trips-message-unique">No hay viajes disponibles por ahora.</h2>
                     ) : (
                         months.map((month) => (
                             <div key={month} className="colombia-month-group-unique">
