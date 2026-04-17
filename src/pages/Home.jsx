@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-const video1 = "https://res.cloudinary.com/duqi8oy4a/video/upload/v1764715475/adventure_a5uezc.mov";
+const video1 = "https://res.cloudinary.com/deafueoco/video/upload/v1776440899/02_1_rhsmu5.mov";
 
 import "../Styles/home.css"; 
 import icon1 from "../assets/img/icon2.png"; // Satisfacción (Trofeo/Laurel)
